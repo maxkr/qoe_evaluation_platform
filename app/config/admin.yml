@@ -1,0 +1,66 @@
+
+easy_admin:
+    site_name: 'Evaluation Administration'
+    entities:
+      QuestionGroup:
+        class: AppBundle\Entity\Question\QuestionGroup
+        list:
+          fields:
+            - id
+            - name
+            - type
+#            - { property: appearance, type_options: {choices_as_values: true } }
+            - appearance
+            - ordinance
+        form:
+          fields:
+            - name
+            - type
+            - { property: appearance, type: choice, type_options: { choices: [pre: pre, post: post], choices_as_values: true } }
+            - ordinance
+      QuestionType:
+        class: AppBundle\Entity\Question\QuestionType
+        list:
+          fields:
+            - { property: type, type_options: {choices_as_values: true } }
+        form:
+          fields:
+            - { property: type, type: choice, type_options: { choices: [radioBox: radioBox, checkBox: checkBox, selectionBox: selectionBox, text: text, textArea: textArea, slider: slider], choices_as_values: true } }
+      User:
+        class: AppBundle\Entity\User
+        list:
+          fields:
+            - id
+            - username
+            - email
+            - evaluation
+            - enabled
+        form:
+          fields:
+            - username
+            - password
+            - email
+            - roles
+            - enabled
+            - evaluation
+      Evaluation:
+        class: AppBundle\Entity\Evaluation
+        form:
+          fields:
+            - name
+            - { property: 'users', type_options: { by_reference: false} }
+            - { property: 'contents', type_options: { by_reference: false} }
+            - { property: 'questions', type_options: { by_reference: false} }
+      Content:
+        class: AppBundle\Entity\Content
+      Question:
+        class: AppBundle\Entity\Question\Question
+        list:
+          fields:
+            - id
+            - name
+            - text
+            - group
+            - ordinance
+            - evaluation
+

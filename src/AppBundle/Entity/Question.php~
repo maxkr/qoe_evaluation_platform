@@ -1,0 +1,266 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Question
+ *
+ * @ORM\Table(name="question")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\QuestionRepository")
+ */
+class Question
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255)
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="question_text", type="string", length=255)
+     */
+
+    private $questionText;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cluster", type="string", length=255, nullable=true)
+     */
+    private $cluster;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="type", type="string", length=255)
+     */
+    private $type;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="ordinance", type="integer", unique=true)
+     */
+    private $ordinance;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="appearance", type="string", length=255)
+     */
+    private $appearance;
+
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Evaluation", inversedBy="questions")
+     * @ORM\JoinColumn(name="evaluation_id", referencedColumnName="id")
+     */
+
+    protected $evaluation;
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return Question
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set cluster
+     *
+     * @param string $cluster
+     *
+     * @return Question
+     */
+    public function setCluster($cluster)
+    {
+        $this->cluster = $cluster;
+
+        return $this;
+    }
+
+    /**
+     * Get cluster
+     *
+     * @return string
+     */
+    public function getCluster()
+    {
+        return $this->cluster;
+    }
+
+    /**
+     * Set type
+     *
+     * @param string $type
+     *
+     * @return Question
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Set ordinance
+     *
+     * @param integer $ordinance
+     *
+     * @return Question
+     */
+    public function setOrdinance($ordinance)
+    {
+        $this->ordinance = $ordinance;
+
+        return $this;
+    }
+
+    /**
+     * Get ordinance
+     *
+     * @return int
+     */
+    public function getOrdinance()
+    {
+        return $this->ordinance;
+    }
+
+    /**
+     * Set appearance
+     *
+     * @param string $appearance
+     *
+     * @return Question
+     */
+    public function setAppearance($appearance)
+    {
+        $this->appearance = $appearance;
+
+        return $this;
+    }
+
+    /**
+     * Get appearance
+     *
+     * @return string
+     */
+    public function getAppearance()
+    {
+        return $this->appearance;
+    }
+
+    /**
+     * Set evaluation
+     *
+     * @param \AppBundle\Entity\Evaluation $evaluation
+     *
+     * @return Question
+     */
+    public function setEvaluation(\AppBundle\Entity\Evaluation $evaluation = null)
+    {
+        $this->evaluation = $evaluation;
+
+        return $this;
+    }
+
+    /**
+     * Remove Evaluation
+     *
+     */
+    public function removeEvaluation()
+    {
+        $this->evaluation = null;
+    }
+
+    /**
+     * Get evaluation
+     *
+     * @return \AppBundle\Entity\Evaluation
+     */
+    public function getEvaluation()
+    {
+        return $this->evaluation;
+    }
+
+    /**
+     * Set questionText
+     *
+     * @param string $questionText
+     *
+     * @return Question
+     */
+    public function setQuestionText($questionText)
+    {
+        $this->questionText = $questionText;
+
+        return $this;
+    }
+
+    /**
+     * Get questionText
+     *
+     * @return string
+     */
+    public function getQuestionText()
+    {
+        return $this->questionText;
+    }
+
+    public function __toString()
+    {
+        return strval($this->name);
+    }
+}
