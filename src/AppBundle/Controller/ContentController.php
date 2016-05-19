@@ -11,8 +11,8 @@ class ContentController extends Controller
      * @Route("/content", name="content")
      */
 
-    public function indexAction($name)
+    public function indexAction()
     {
-        return $this->render('', array('name' => $name));
+        return $this->render('content/content.html.twig');
     }
 }

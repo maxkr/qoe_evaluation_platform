@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="centered">
+        <div id="video">
+        </div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        body {background: #AAAAAA;}
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('https://bitmovin-a.akamaihd.net/bitdash/latest/bitdash.min.js') }}"></script>
+    <script src="{{ asset('js/bdplayer.js') }}"></script>
+{% endblock %}
