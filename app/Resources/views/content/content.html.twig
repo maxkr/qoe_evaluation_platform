@@ -1,16 +1,16 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    <div id="video" style="padding: 5%">
+    <div id="video" class="centered_video">
     </div>
- {#   <div align="center" class="embed-responsive embed-responsive-16by9">
-        <div id="video" class="embed-responsive-item">
-        </div>
-    </div>#}
+
 {% endblock %}
 
 {% block stylesheets %}
     <style>
         body {background: #AAAAAA;}
+        .centered_video  {
+            padding: 5%;
+        }
     </style>
 {% endblock %}
 
