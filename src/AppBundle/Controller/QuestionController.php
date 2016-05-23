@@ -47,9 +47,9 @@ class QuestionController extends Controller
                 $user = $this->get('security.token_storage')->getToken()->getUser();
                 $em = $this->getDoctrine()->getManager();
 
-//                /*var_dump($data);
+//                var_dump($data);
 //                echo "<br>";
-//                echo "<br>";*/
+//                echo "<br>";
                 foreach($data as $key => $value)
                 {
                     if(gettype($key) == "integer"){

@@ -3,7 +3,9 @@
 {% form_theme form '@EasyAdmin/form/bootstrap_3_horizontal_layout.html.twig' %}
 
 {% block body %}
+    <div style="padding-right: 10%";>
 {{ form_start(form) }}
 {{ form_widget(form) }}
 {{ form_end(form) }}
+    </div>
 {% endblock %}

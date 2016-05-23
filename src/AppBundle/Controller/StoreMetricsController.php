@@ -3,6 +3,8 @@
 namespace AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Response;
 
 class StoreMetricsController extends Controller
 {
@@ -12,6 +14,8 @@ class StoreMetricsController extends Controller
 
     public function indexAction()
     {
-        return $this->render('content/content.html.twig');
+        return new Response(
+            '<html><body>Lucky number: </body></html>'
+        );
     }
 }
