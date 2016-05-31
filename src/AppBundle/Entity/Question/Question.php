@@ -24,35 +24,39 @@ class Question
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=255, unique=true)
      */
     private $name;
 
     /**
+     * @ORM\ManyToOne(targetEntity="QuestionType", inversedBy="questions")
+     */
+
+    protected $type;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="ordinance", type="integer", unique=true)
+     */
+    private $ordinance;
+
+    /**
      * @var string
      *
-     * @ORM\Column(name="question_text", type="string", length=255)
+     * @ORM\Column(name="appearance", type="string", length=255)
      */
-
-    private $text;
+    private $appearance;
 
     /**
-     * @ORM\ManyToOne(targetEntity="QuestionGroup", inversedBy="questions")
-     * @ORM\JoinColumn(name="questionGroup_id", referencedColumnName="id")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Question\Answer", mappedBy="question")
      */
 
-    protected $group;
-
-    /**
-     * @ORM\Column(name="question_ordinance", type="integer")
-     */
-
-    protected $ordinance;
+    protected $answers;
 
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Evaluation", inversedBy="questions")
-     * @ORM\JoinColumn(name="evaluation_id", referencedColumnName="id")
      */
 
     protected $evaluation;
@@ -65,6 +69,19 @@ class Question
     public function getId()
     {
         return $this->id;
+    }
+
+    public function __toString()
+    {
+        return strval($this->name);
+    }
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->answers = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -89,65 +106,6 @@ class Question
     public function getName()
     {
         return $this->name;
-    }
-
-
-
-    /**
-     * Set evaluation
-     *
-     * @param \AppBundle\Entity\Evaluation $evaluation
-     *
-     * @return Question
-     */
-    public function setEvaluation(\AppBundle\Entity\Evaluation $evaluation = null)
-    {
-        $this->evaluation = $evaluation;
-
-        return $this;
-    }
-
-    /**
-     * Remove Evaluation
-     *
-     */
-    public function removeEvaluation()
-    {
-        $this->evaluation = null;
-    }
-
-    /**
-     * Get evaluation
-     *
-     * @return \AppBundle\Entity\Evaluation
-     */
-    public function getEvaluation()
-    {
-        return $this->evaluation;
-    }
-
-    /**
-     * Set text
-     *
-     * @param string $text
-     *
-     * @return Question
-     */
-    public function setText($text)
-    {
-        $this->text = $text;
-
-        return $this;
-    }
-
-    /**
-     * Get text
-     *
-     * @return string
-     */
-    public function getText()
-    {
-        return $this->text;
     }
 
     /**
@@ -175,6 +133,30 @@ class Question
     }
 
     /**
+     * Set appearance
+     *
+     * @param string $appearance
+     *
+     * @return Question
+     */
+    public function setAppearance($appearance)
+    {
+        $this->appearance = $appearance;
+
+        return $this;
+    }
+
+    /**
+     * Get appearance
+     *
+     * @return string
+     */
+    public function getAppearance()
+    {
+        return $this->appearance;
+    }
+
+    /**
      * Set type
      *
      * @param \AppBundle\Entity\Question\QuestionType $type
@@ -199,31 +181,70 @@ class Question
     }
 
     /**
-     * Set group
+     * Add answer
      *
-     * @param \AppBundle\Entity\Question\QuestionGroup $group
+     * @param \AppBundle\Entity\Question\Answer $answer
      *
      * @return Question
      */
-    public function setGroup(\AppBundle\Entity\Question\QuestionGroup $group = null)
+    public function addAnswer(\AppBundle\Entity\Question\Answer $answer)
     {
-        $this->group = $group;
+        $this->answers[] = $answer;
 
         return $this;
     }
 
     /**
-     * Get group
+     * Remove answer
      *
-     * @return \AppBundle\Entity\Question\QuestionGroup
+     * @param \AppBundle\Entity\Question\Answer $answer
      */
-    public function getGroup()
+    public function removeAnswer(\AppBundle\Entity\Question\Answer $answer)
     {
-        return $this->group;
+        $this->answers->removeElement($answer);
     }
 
-    public function __toString()
+    /**
+     * Get answers
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAnswers()
     {
-        return strval($this->name);
+        return $this->answers;
+    }
+
+
+    /**
+     * Set evaluation
+     *
+     * @param \AppBundle\Entity\Evaluation $evaluation
+     *
+     * @return Question
+     */
+    public function setEvaluation(\AppBundle\Entity\Evaluation $evaluation = null)
+    {
+        $this->evaluation = $evaluation;
+
+        return $this;
+    }
+
+    /**
+     * Get evaluation
+     *
+     * @return \AppBundle\Entity\Evaluation
+     */
+    public function getEvaluation()
+    {
+        return $this->evaluation;
+    }
+
+    /**
+     * Remove Evaluation
+     *
+     */
+    public function removeEvaluation()
+    {
+        $this->evaluation = null;
     }
 }

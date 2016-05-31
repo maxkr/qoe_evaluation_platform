@@ -3,45 +3,70 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use FOS\UserBundle\Model\User as BaseUser;
+
 /**
- * User
+ * Metrics
  *
- * @ORM\Table("fos_user")
- * @ORM\Entity
+ * @ORM\Table(name="metrics")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\MetricsRepository")
  */
-class User extends BaseUser
+class Metrics
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected $id;
+    private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Evaluation", inversedBy="users")
+     * @var string
+     *
+     * @ORM\Column(name="type", type="string", length=255)
+     */
+    private $type;
+
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Evaluation", inversedBy="metrics")
      */
 
     protected $evaluation;
 
-
     /**
      * Get id
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
         return $this->id;
     }
 
-
-    public function __toString()
+    /**
+     * Set type
+     *
+     * @param string $type
+     *
+     * @return Metrics
+     */
+    public function setType($type)
     {
-        return strval($this->username);
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 
     /**
@@ -49,7 +74,7 @@ class User extends BaseUser
      *
      * @param \AppBundle\Entity\Evaluation $evaluation
      *
-     * @return User
+     * @return Metrics
      */
     public function setEvaluation(\AppBundle\Entity\Evaluation $evaluation = null)
     {
@@ -75,5 +100,10 @@ class User extends BaseUser
     public function removeEvaluation()
     {
         $this->evaluation = null;
+    }
+
+    public function __toString()
+    {
+        return strval($this->type);
     }
 }

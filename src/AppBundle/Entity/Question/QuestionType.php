@@ -24,16 +24,16 @@ class QuestionType
     /**
      * @var string
      *
-     * @ORM\Column(name="questionType", type="string", length=255, unique=true)
+     * @ORM\Column(name="question_type", type="string", length=255, unique=true)
      */
     private $type;
 
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Question\QuestionGroup", mappedBy="type", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Question\Question", mappedBy="type")
      */
 
-    protected $groups;
+    protected $questions;
 
     /**
      * Get id
@@ -45,13 +45,16 @@ class QuestionType
         return $this->id;
     }
 
-
+    public function __toString()
+    {
+        return strval($this->type);
+    }
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->groups = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->questions = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -78,43 +81,37 @@ class QuestionType
         return $this->type;
     }
 
-
     /**
-     * Add group
+     * Add question
      *
-     * @param \AppBundle\Entity\Question\QuestionGroup $group
+     * @param \AppBundle\Entity\Question\Question $question
      *
      * @return QuestionType
      */
-    public function addGroup(\AppBundle\Entity\Question\QuestionGroup $group)
+    public function addQuestion(\AppBundle\Entity\Question\Question $question)
     {
-        $this->groups[] = $group;
+        $this->questions[] = $question;
 
         return $this;
     }
 
     /**
-     * Remove group
+     * Remove question
      *
-     * @param \AppBundle\Entity\Question\QuestionGroup $group
+     * @param \AppBundle\Entity\Question\Question $question
      */
-    public function removeGroup(\AppBundle\Entity\Question\QuestionGroup $group)
+    public function removeQuestion(\AppBundle\Entity\Question\Question $question)
     {
-        $this->groups->removeElement($group);
+        $this->questions->removeElement($question);
     }
 
     /**
-     * Get groups
+     * Get questions
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getGroups()
+    public function getQuestions()
     {
-        return $this->groups;
-    }
-
-    public function __toString()
-    {
-        return strval($this->type);
+        return $this->questions;
     }
 }

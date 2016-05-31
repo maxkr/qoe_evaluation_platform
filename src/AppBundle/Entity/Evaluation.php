@@ -30,7 +30,7 @@ class Evaluation
     protected $id;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=255)
      */
 
     protected $name;
@@ -49,16 +49,30 @@ class Evaluation
     protected $contents;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Question\Question", mappedBy="evaluation", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Question\Question", mappedBy="evaluation")
      */
 
     protected $questions;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Metrics", mappedBy="evaluation")
+     */
+
+    protected $metrics;
+
+
+    /**
+     * @ORM\ManyToOne(targetEntity="EvaluationType", inversedBy="evaluations")
+     */
+
+    protected $type;
 
     public function __construct()
     {
         $this->users = new ArrayCollection();
         $this->contents = new ArrayCollection();
         $this->questions = new ArrayCollection();
+        $this->metrics = new ArrayCollection();
     }
 
     /**
@@ -106,7 +120,7 @@ class Evaluation
     {
         if (!$this->users->contains($users)) {
             $this->users[] = $users;
-            $users->removeEvaluation();
+            $users->setEvaluation($this);
         }
 
         return $this;
@@ -211,5 +225,67 @@ class Evaluation
     public function __toString()
     {
         return strval($this->name);
+    }
+
+    /**
+     * Set type
+     *
+     * @param \AppBundle\Entity\EvaluationType $type
+     *
+     * @return Evaluation
+     */
+    public function setType(\AppBundle\Entity\EvaluationType $type = null)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return \AppBundle\Entity\EvaluationType
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Add metric
+     *
+     * @param \AppBundle\Entity\Metrics $metric
+     *
+     * @return Evaluation
+     */
+    public function addMetric(\AppBundle\Entity\Metrics $metric)
+    {
+
+        if (!$this->metrics->contains($metric)) {
+            $this->metrics[] = $metric;
+            $metric->setEvaluation($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Remove metric
+     *
+     * @param \AppBundle\Entity\Metrics $metric
+     */
+    public function removeMetric(\AppBundle\Entity\Metrics $metric)
+    {
+        $this->metrics->removeElement($metric);
+    }
+
+    /**
+     * Get metrics
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getMetrics()
+    {
+        return $this->metrics;
     }
 }

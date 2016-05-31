@@ -1,14 +1,42 @@
 
 easy_admin:
     site_name: 'Evaluation Administration'
+#    design:
+#      menu:
+#        - Evaluation
+#        - Content
+#        - { entity: 'QuestionGroup', label: 'Questions' }
+#        - { entity: 'Evaluation', label: 'Evaluation' }
+#        - { entity: 'Evaluation', label: 'Evaluation' }
     entities:
-      QuestionGroup:
-        class: AppBundle\Entity\Question\QuestionGroup
+      Evaluation:
+        class: AppBundle\Entity\Evaluation
+        label: 'Evaluations'
         list:
+          title: 'Evaluations'
+        form:
+          fields:
+            - name
+            - type
+            - { property: 'contents', type_options: { by_reference: false} }
+            - { property: 'questions', type_options: { by_reference: false} }
+            - { property: 'metrics', type_options: { by_reference: false} }
+            - { property: 'users', type_options: { by_reference: false} }
+      Content:
+        label: 'Contents'
+        list:
+          title: 'Contents'
+        class: AppBundle\Entity\Content
+      Question:
+        class: AppBundle\Entity\Question\Question
+        label: 'Questions'
+        list:
+          title: 'Questions'
           fields:
             - id
             - name
             - type
+            - answers
 #            - { property: appearance, type_options: {choices_as_values: true } }
             - appearance
             - ordinance
@@ -16,19 +44,34 @@ easy_admin:
           fields:
             - name
             - type
+            - answers
             - { property: appearance, type: choice, type_options: { choices: [pre: pre, post: post], choices_as_values: true } }
             - ordinance
-      QuestionType:
-        class: AppBundle\Entity\Question\QuestionType
+      Answer:
+        class: AppBundle\Entity\Question\Answer
+        label: 'Answers'
         list:
+          title: 'Answers'
           fields:
-            - { property: type, type_options: {choices_as_values: true } }
-        form:
-          fields:
-            - { property: type, type: choice, type_options: { choices: [radioBox: radioBox, checkBox: checkBox, selectionBox: selectionBox, text: text, textArea: textArea, slider: slider], choices_as_values: true } }
+            - id
+            - name
+            - text
+            - question
+            - ordinance
+            - evaluation
+#      QuestionType:
+#        class: AppBundle\Entity\Question\QuestionType
+#        list:
+#          fields:
+#            - { property: type, type_options: {choices_as_values: true } }
+#        form:
+#          fields:
+#            - { property: type, type: choice, type_options: { choices: [radioBox: radioBox, checkBox: checkBox, selectionBox: selectionBox, text: text, textArea: textArea, slider: slider], choices_as_values: true } }
       User:
         class: AppBundle\Entity\User
+        label: 'Users'
         list:
+          title: 'Users'
           fields:
             - id
             - username
@@ -43,24 +86,6 @@ easy_admin:
             - roles
             - enabled
             - evaluation
-      Evaluation:
-        class: AppBundle\Entity\Evaluation
-        form:
-          fields:
-            - name
-            - { property: 'users', type_options: { by_reference: false} }
-            - { property: 'contents', type_options: { by_reference: false} }
-            - { property: 'questions', type_options: { by_reference: false} }
-      Content:
-        class: AppBundle\Entity\Content
-      Question:
-        class: AppBundle\Entity\Question\Question
-        list:
-          fields:
-            - id
-            - name
-            - text
-            - group
-            - ordinance
-            - evaluation
+#      Metrics:
+#        class: AppBundle\Entity\Metrics
 

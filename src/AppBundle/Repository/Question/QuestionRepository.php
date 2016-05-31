@@ -11,9 +11,8 @@ use Doctrine\ORM\Query\Expr\Join;
  */
 class QuestionRepository extends \Doctrine\ORM\EntityRepository
 {
-
-    public function findOneByGroup($group)
+    public function findByAppearanceOrderedByOrdinance($appearance)
     {
-        return $this->findOneBy(array('group' => $group));
+        return $this->findBy(array('appearance' => $appearance), array('ordinance' => 'ASC'));
     }
 }
