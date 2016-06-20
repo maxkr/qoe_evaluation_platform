@@ -22,7 +22,7 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Evaluation", inversedBy="users")
+     * @ORM\OneToMany(targetEntity="Evaluation", inversedBy="users")
      */
 
     protected $evaluation;

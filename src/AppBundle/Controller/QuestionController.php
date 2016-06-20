@@ -29,7 +29,7 @@ class QuestionController extends Controller
     {
 
         $preQuestionGroups = $this->getDoctrine()
-            ->getRepository('AppBundle:Question\QuestionGroup')
+            ->getRepository('AppBundle:Question\Question')
             ->findByAppearanceOrderedByOrdinance("pre");
 
         $form = null;
