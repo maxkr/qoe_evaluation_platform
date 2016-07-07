@@ -36,17 +36,18 @@ class Evaluation
     protected $name;
 
     /**
-     * @ORM\OneToMany(targetEntity="User", mappedBy="evaluation")
-     */
-
-    protected $users;
-
-    /**
      * @ORM\OneToMany(targetEntity="Content", mappedBy="evaluation")
      */
 
 
     protected $contents;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="User", inversedBy="evaluations")
+     */
+
+    protected $users;
+
 
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Question\Question", mappedBy="evaluation")
@@ -110,42 +111,7 @@ class Evaluation
         return $this->name;
     }
 
-    /**
-     * Add users
-     *
-     * @param \AppBundle\Entity\User $users
-     * @return Evaluation
-     */
-    public function addUser(\AppBundle\Entity\User $users)
-    {
-        if (!$this->users->contains($users)) {
-            $this->users[] = $users;
-            $users->setEvaluation($this);
-        }
-
-        return $this;
-    }
-
-    /**
-     * Remove users
-     *
-     * @param \AppBundle\Entity\User $users
-     */
-    public function removeUser(\AppBundle\Entity\User $users)
-    {
-        $this->users->removeElement($users);
-    }
-
-    /**
-     * Get users
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getUsers()
-    {
-        return $this->users;
-    }
-
+   
     /**
      * Add contents
      *
@@ -287,5 +253,41 @@ class Evaluation
     public function getMetrics()
     {
         return $this->metrics;
+    }
+
+
+
+    /**
+     * Add user
+     *
+     * @param \AppBundle\Entity\User $user
+     *
+     * @return Evaluation
+     */
+    public function addUser(\AppBundle\Entity\User $user)
+    {
+        $this->users[] = $user;
+
+        return $this;
+    }
+
+    /**
+     * Remove user
+     *
+     * @param \AppBundle\Entity\User $user
+     */
+    public function removeUser(\AppBundle\Entity\User $user)
+    {
+        $this->users->removeElement($user);
+    }
+
+    /**
+     * Get users
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getUsers()
+    {
+        return $this->users;
     }
 }

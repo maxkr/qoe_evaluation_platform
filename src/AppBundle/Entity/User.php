@@ -21,12 +21,12 @@ class User extends BaseUser
      */
     protected $id;
 
+
     /**
-     * @ORM\OneToMany(targetEntity="Evaluation", inversedBy="users")
+     * @ORM\ManyToMany(targetEntity="Evaluation", mappedBy="users")
      */
 
-    protected $evaluation;
-
+    protected $evaluations;
 
     /**
      * Get id
@@ -44,36 +44,38 @@ class User extends BaseUser
         return strval($this->username);
     }
 
+
     /**
-     * Set evaluation
+     * Add evaluation
      *
      * @param \AppBundle\Entity\Evaluation $evaluation
      *
      * @return User
      */
-    public function setEvaluation(\AppBundle\Entity\Evaluation $evaluation = null)
+    public function addEvaluation(\AppBundle\Entity\Evaluation $evaluation)
     {
-        $this->evaluation = $evaluation;
+        $this->evaluations[] = $evaluation;
 
         return $this;
     }
 
     /**
-     * Get evaluation
+     * Remove evaluation
      *
-     * @return \AppBundle\Entity\Evaluation
+     * @param \AppBundle\Entity\Evaluation $evaluation
      */
-    public function getEvaluation()
+    public function removeEvaluation(\AppBundle\Entity\Evaluation $evaluation)
     {
-        return $this->evaluation;
+        $this->evaluations->removeElement($evaluation);
     }
 
     /**
-     * Remove Evaluation
+     * Get evaluations
      *
+     * @return \Doctrine\Common\Collections\Collection
      */
-    public function removeEvaluation()
+    public function getEvaluations()
     {
-        $this->evaluation = null;
+        return $this->evaluations;
     }
 }
