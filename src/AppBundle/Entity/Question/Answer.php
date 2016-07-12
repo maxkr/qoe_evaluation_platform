@@ -3,6 +3,7 @@
 namespace AppBundle\Entity\Question;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Answer
@@ -37,37 +38,43 @@ class Answer
     private $text;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Question", inversedBy="answers")
-     */
-
-    private $question;
-
-    /**
      * @ORM\Column(name="ordinance", type="integer")
      */
 
     private $ordinance;
 
-
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Evaluation")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Question\Question", mappedBy="answers")
      */
 
-    protected $evaluation;
+    protected $questions;
+
+    /**
+     * Answer constructor.
+     */
+
+    public function __construct()
+    {
+        $this->questions      = new ArrayCollection();
+    }
+
+    /**
+     * @return string
+     */
+
+    public function __toString()
+    {
+        return strval("{$this->name} (order: {$this->ordinance})");
+    }
 
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
         return $this->id;
-    }
-
-    public function __toString()
-    {
-        return strval($this->name);
     }
 
     /**
@@ -143,50 +150,36 @@ class Answer
     }
 
     /**
-     * Set evaluation
-     *
-     * @param \AppBundle\Entity\Evaluation $evaluation
-     *
-     * @return Answer
-     */
-    public function setEvaluation(\AppBundle\Entity\Evaluation $evaluation = null)
-    {
-        $this->evaluation = $evaluation;
-
-        return $this;
-    }
-
-    /**
-     * Get evaluation
-     *
-     * @return \AppBundle\Entity\Evaluation
-     */
-    public function getEvaluation()
-    {
-        return $this->evaluation;
-    }
-
-    /**
-     * Set question
+     * Add question
      *
      * @param \AppBundle\Entity\Question\Question $question
      *
      * @return Answer
      */
-    public function setQuestion(\AppBundle\Entity\Question\Question $question = null)
+    public function addQuestion(\AppBundle\Entity\Question\Question $question)
     {
-        $this->question = $question;
+        $this->questions[] = $question;
 
         return $this;
     }
 
     /**
-     * Get question
+     * Remove question
      *
-     * @return \AppBundle\Entity\Question\Question
+     * @param \AppBundle\Entity\Question\Question $question
      */
-    public function getQuestion()
+    public function removeQuestion(\AppBundle\Entity\Question\Question $question)
     {
-        return $this->question;
+        $this->questions->removeElement($question);
+    }
+
+    /**
+     * Get questions
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getQuestions()
+    {
+        return $this->questions;
     }
 }

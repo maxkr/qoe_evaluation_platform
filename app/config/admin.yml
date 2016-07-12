@@ -9,19 +9,31 @@ easy_admin:
 #        - { entity: 'Evaluation', label: 'Evaluation' }
 #        - { entity: 'Evaluation', label: 'Evaluation' }
     entities:
+      EvaluationType:
+        class: AppBundle\Entity\EvaluationType
       Evaluation:
         class: AppBundle\Entity\Evaluation
         label: 'Evaluations'
         list:
           title: 'Evaluations'
+          fields:
+            - id
+            - name
+            - type
+            - contents
+            - metrics
+            - users
+            - questions
         form:
           fields:
             - name
             - type
-            - { property: 'contents', type_options: { by_reference: false} }
-            - { property: 'questions', type_options: { by_reference: false} }
-            - { property: 'metrics', type_options: { by_reference: false} }
+            - contents
+            - metrics
             - users
+            - questions
+            - { property: 'intro', label: 'intro Text (HTML)', type: textarea }
+            - { property: 'disclaimer', label: 'disclaimer Text (HTML)', type: textarea }
 #            - { property: 'users', type_options: { by_reference: false} }
       Content:
         label: 'Contents'
@@ -41,6 +53,7 @@ easy_admin:
 #            - { property: appearance, type_options: {choices_as_values: true } }
             - appearance
             - ordinance
+            - evaluations
         form:
           fields:
             - name
@@ -48,6 +61,7 @@ easy_admin:
             - answers
             - { property: appearance, type: choice, type_options: { choices: [pre: pre, post: post], choices_as_values: true } }
             - ordinance
+            - evaluations
       Answer:
         class: AppBundle\Entity\Question\Answer
         label: 'Answers'
@@ -57,9 +71,13 @@ easy_admin:
             - id
             - name
             - text
-            - question
+            - questions
             - ordinance
-            - evaluation
+        form:
+          fields:
+            - name
+            - text
+            - ordinance
 #      QuestionType:
 #        class: AppBundle\Entity\Question\QuestionType
 #        list:

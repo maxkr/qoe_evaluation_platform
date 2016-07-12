@@ -30,15 +30,34 @@ class Metrics
 
 
     /**
-     * @ORM\ManyToOne(targetEntity="Evaluation", inversedBy="metrics")
+     * @ORM\ManyToMany(targetEntity="Evaluation", mappedBy="metrics")
      */
 
-    protected $evaluation;
+    protected $evaluations;
 
+    /**
+     * Metrics constructor.
+     */
+
+    public function __construct()
+    {
+        $this->evaluations     = new ArrayCollection();
+    }
+
+    /**
+     * @return string
+     */
+
+    public function __toString()
+    {
+        return strval($this->type);
+    }
+
+   
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -70,40 +89,36 @@ class Metrics
     }
 
     /**
-     * Set evaluation
+     * Add evaluation
      *
      * @param \AppBundle\Entity\Evaluation $evaluation
      *
      * @return Metrics
      */
-    public function setEvaluation(\AppBundle\Entity\Evaluation $evaluation = null)
+    public function addEvaluation(\AppBundle\Entity\Evaluation $evaluation)
     {
-        $this->evaluation = $evaluation;
+        $this->evaluations[] = $evaluation;
 
         return $this;
     }
 
     /**
-     * Get evaluation
+     * Remove evaluation
      *
-     * @return \AppBundle\Entity\Evaluation
+     * @param \AppBundle\Entity\Evaluation $evaluation
      */
-    public function getEvaluation()
+    public function removeEvaluation(\AppBundle\Entity\Evaluation $evaluation)
     {
-        return $this->evaluation;
+        $this->evaluations->removeElement($evaluation);
     }
 
     /**
-     * Remove Evaluation
+     * Get evaluations
      *
+     * @return \Doctrine\Common\Collections\Collection
      */
-    public function removeEvaluation()
+    public function getEvaluations()
     {
-        $this->evaluation = null;
-    }
-
-    public function __toString()
-    {
-        return strval($this->type);
+        return $this->evaluations;
     }
 }

@@ -1,10 +1,12 @@
 {% extends 'base.html.twig' %}
 {% block body %}
+    {{ parent() }}
     <div id="video" class="centered_video">
     </div>
 {% endblock %}
 
 {% block stylesheets %}
+    {{ parent() }}
     <style>
         .centered_video  {
             padding: 5%;
@@ -14,6 +16,22 @@
 {% endblock %}
 
 {% block javascripts %}
+    <script>
+        var count = '{{ contents|length }}';
+
+
+
+
+        var paths               = new Array();
+        var playBackOffsets     = new Array();
+        var playBackDurations   = new Array();
+        {% for content in contents %}
+            paths.push('{{ content.path }}');
+        {% endfor %}
+
+
+
+    </script>
     <script src="{{ asset('https://bitmovin-a.akamaihd.net/bitdash/latest/bitdash.min.js') }}"></script>
     <script src="{{ asset('js/bdplayer.js') }}"></script>
     <script src="{{ asset('js/videoMetricsStruct.js') }}"></script>

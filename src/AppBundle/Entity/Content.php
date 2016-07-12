@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -34,6 +35,13 @@ class Content
     private $path;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="ordinance", type="integer")
+     */
+    private $ordinance;
+
+    /**
      * @var integer
      * @ORM\Column(name="playback_offset", type="integer", nullable=true)
      */
@@ -64,27 +72,44 @@ class Content
     private $ratingUpperBound;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Evaluation", inversedBy="contents")
+     * @ORM\ManyToMany(targetEntity="Evaluation", mappedBy="contents")
      */
 
-    protected $evaluation;
+    protected $evaluations;
+
+    /**
+     * Content constructor.
+     */
+
+    public function __construct()
+    {
+        $this->evaluations  = new ArrayCollection();
+    }
+
+    /**
+     * @return string
+     */
+
+    public function __toString()
+    {
+        return strval("{$this->name} (order: {$this->ordinance})");
+    }
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
         return $this->id;
     }
 
-
-
     /**
      * Set name
      *
      * @param string $name
+     *
      * @return Content
      */
     public function setName($name)
@@ -97,50 +122,11 @@ class Content
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
         return $this->name;
-    }
-
-    /**
-     * Set evaluation
-     *
-     * @param \AppBundle\Entity\Evaluation $evaluation
-     * @return Content
-     */
-    public function setEvaluation(\AppBundle\Entity\Evaluation $evaluation = null)
-    {
-        $this->evaluation = $evaluation;
-
-        return $this;
-    }
-
-
-    /**
-     * Get evaluation
-     *
-     * @return \AppBundle\Entity\Evaluation 
-     */
-    public function getEvaluation()
-    {
-        return $this->evaluation;
-    }
-
-    /**
-     * Remove Evaluation
-     *
-     */
-    public function removeEvaluation()
-    {
-        $this->evaluation = null;
-    }
-
-
-    public function __toString()
-    {
-        return strval($this->name);
     }
 
     /**
@@ -285,5 +271,97 @@ class Content
     public function getRatingUpperBound()
     {
         return $this->ratingUpperBound;
+    }
+
+    /**
+     * Add evaluation
+     *
+     * @param \AppBundle\Entity\Evaluation $evaluation
+     *
+     * @return Content
+     */
+    public function addEvaluation(\AppBundle\Entity\Evaluation $evaluation)
+    {
+        $this->evaluations[] = $evaluation;
+
+        return $this;
+    }
+
+    /**
+     * Remove evaluation
+     *
+     * @param \AppBundle\Entity\Evaluation $evaluation
+     */
+    public function removeEvaluation(\AppBundle\Entity\Evaluation $evaluation)
+    {
+        $this->evaluations->removeElement($evaluation);
+    }
+
+    /**
+     * Get evaluations
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEvaluations()
+    {
+        return $this->evaluations;
+    }
+
+    /**
+     * Add metric
+     *
+     * @param \AppBundle\Entity\Metrics $metric
+     *
+     * @return Content
+     */
+    public function addMetric(\AppBundle\Entity\Metrics $metric)
+    {
+        $this->metrics[] = $metric;
+
+        return $this;
+    }
+
+    /**
+     * Remove metric
+     *
+     * @param \AppBundle\Entity\Metrics $metric
+     */
+    public function removeMetric(\AppBundle\Entity\Metrics $metric)
+    {
+        $this->metrics->removeElement($metric);
+    }
+
+    /**
+     * Get metrics
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getMetrics()
+    {
+        return $this->metrics;
+    }
+
+    /**
+     * Set ordinance
+     *
+     * @param integer $ordinance
+     *
+     * @return Content
+     */
+    public function setOrdinance($ordinance)
+    {
+        $this->ordinance = $ordinance;
+
+        return $this;
+    }
+
+    /**
+     * Get ordinance
+     *
+     * @return integer
+     */
+    public function getOrdinance()
+    {
+        return $this->ordinance;
     }
 }

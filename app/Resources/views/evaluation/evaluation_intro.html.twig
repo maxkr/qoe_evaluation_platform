@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {{ evaluation.intro | raw}}
+
+    <div class="row">
+        <div class="col-md-2 col-md-offset-5">
+            <div class="text-center">
+                <a href="{{ path('evaluationDisclaimer', {'id': evaluation.id}) }}" class="btn btn-link" role="button">Disclaimer</a>
+                <a href="{{ path('preQuestions', {'id': evaluation.id}) }}" class="btn btn-link" role="button">I agree & start the test</a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity\Question;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -37,7 +38,7 @@ class Question
     /**
      * @var int
      *
-     * @ORM\Column(name="ordinance", type="integer", unique=true)
+     * @ORM\Column(name="ordinance", type="integer")
      */
     private $ordinance;
 
@@ -49,39 +50,47 @@ class Question
     private $appearance;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Question\Answer", mappedBy="question")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Question\Answer", inversedBy="questions")
      */
 
     protected $answers;
 
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Evaluation", inversedBy="questions")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Evaluation", mappedBy="questions")
      */
 
-    protected $evaluation;
+    protected $evaluations;
 
-    /**
-     * Get id
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    public function __toString()
-    {
-        return strval($this->name);
-    }
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->answers = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->answers      = new ArrayCollection();
+        $this->evaluations  = new ArrayCollection();
+    }
+
+    /**
+     * @return string
+     */
+
+    public function __toString()
+    {
+        return strval("{$this->name} (order: {$this->ordinance})");
+    }
+
+
+    
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 
     /**
@@ -214,37 +223,37 @@ class Question
         return $this->answers;
     }
 
-
     /**
-     * Set evaluation
+     * Add evaluation
      *
      * @param \AppBundle\Entity\Evaluation $evaluation
      *
      * @return Question
      */
-    public function setEvaluation(\AppBundle\Entity\Evaluation $evaluation = null)
+    public function addEvaluation(\AppBundle\Entity\Evaluation $evaluation)
     {
-        $this->evaluation = $evaluation;
+        $this->evaluations[] = $evaluation;
 
         return $this;
     }
 
     /**
-     * Get evaluation
+     * Remove evaluation
      *
-     * @return \AppBundle\Entity\Evaluation
+     * @param \AppBundle\Entity\Evaluation $evaluation
      */
-    public function getEvaluation()
+    public function removeEvaluation(\AppBundle\Entity\Evaluation $evaluation)
     {
-        return $this->evaluation;
+        $this->evaluations->removeElement($evaluation);
     }
 
     /**
-     * Remove Evaluation
+     * Get evaluations
      *
+     * @return \Doctrine\Common\Collections\Collection
      */
-    public function removeEvaluation()
+    public function getEvaluations()
     {
-        $this->evaluation = null;
+        return $this->evaluations;
     }
 }

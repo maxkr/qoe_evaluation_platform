@@ -1,11 +1,35 @@
 {% extends 'base.html.twig' %}
 
-{% form_theme form '@EasyAdmin/form/bootstrap_3_horizontal_layout.html.twig' %}
+{% if form is defined %}
+    {% form_theme form '@EasyAdmin/form/bootstrap_3_horizontal_layout.html.twig' %}
+{% endif %}
+
 
 {% block body %}
-    <div style="padding-right: 10%";>
-{{ form_start(form) }}
-{{ form_widget(form) }}
-{{ form_end(form) }}
-    </div>
+        <div style="padding: 0 20% 0 15%";>
+        {#{% if questions is defined%}#}
+            {#{{ dump(questions) }}#}
+        {#{% endif %}#}
+        {% if form is defined %}
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            {{ form_end(form) }}
+        {% endif %}
+        {% if data is defined%}
+            {{ dump(data) }}
+        {% endif %}
+        </div>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/bootstrap-slider.css') }}" />
+
+
+{% endblock %}
+
+
+
+{% block javascripts %}
+    <script src="{{ asset('js/bootstrap-slider.js') }}"></script>
 {% endblock %}

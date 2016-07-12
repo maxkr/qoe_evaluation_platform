@@ -27,71 +27,97 @@ class Evaluation
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected $id;
+    private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
 
-    protected $name;
+    private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity="Content", mappedBy="evaluation")
+     * @ORM\Column(type="string", length=65535)
      */
 
+    private $intro;
 
-    protected $contents;
+    /**
+     * @ORM\Column(type="string", length=65535)
+     */
+
+    private $disclaimer;
+
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Content", inversedBy="evaluations")
+     * @ORM\OrderBy({"ordinance" = "ASC"})
+     */
+
+    private $contents;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Metrics", inversedBy="evaluations")
+     */
+
+    private $metrics;
+
 
     /**
      * @ORM\ManyToMany(targetEntity="User", inversedBy="evaluations")
      */
 
-    protected $users;
-
-
-    /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Question\Question", mappedBy="evaluation")
-     */
-
-    protected $questions;
+    private $users;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Metrics", mappedBy="evaluation")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Question\Question", inversedBy="evaluations")
+     * @ORM\OrderBy({"ordinance" = "ASC"})
      */
 
-    protected $metrics;
-
+    private $questions;
 
     /**
      * @ORM\ManyToOne(targetEntity="EvaluationType", inversedBy="evaluations")
      */
 
-    protected $type;
+    private $type;
+
+    /**
+     * Evaluation constructor.
+     */
 
     public function __construct()
     {
-        $this->users = new ArrayCollection();
-        $this->contents = new ArrayCollection();
-        $this->questions = new ArrayCollection();
-        $this->metrics = new ArrayCollection();
+        $this->contents     = new ArrayCollection();
+        $this->metrics      = new ArrayCollection();
+        $this->users        = new ArrayCollection();
+        $this->questions    = new ArrayCollection();
     }
 
     /**
+     * @return string
+     */
+
+    public function __toString()
+    {
+        return strval($this->name);
+    }
+
+    
+    /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
         return $this->id;
     }
 
-
-
     /**
      * Set name
      *
      * @param string $name
+     *
      * @return Evaluation
      */
     public function setName($name)
@@ -104,117 +130,93 @@ class Evaluation
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
         return $this->name;
     }
 
-   
     /**
-     * Add contents
+     * Set intro
      *
-     * @param \AppBundle\Entity\Content $contents
+     * @param string $intro
+     *
      * @return Evaluation
      */
-    public function addContent(\AppBundle\Entity\Content $contents)
+    public function setIntro($intro)
     {
-        if (!$this->contents->contains($contents)){
-            $this->contents[] = $contents;
-            $contents->setEvaluation($this);
-        }
+        $this->intro = $intro;
 
         return $this;
     }
 
     /**
-     * Remove contents
+     * Get intro
      *
-     * @param \AppBundle\Entity\Content $contents
+     * @return string
      */
-    public function removeContent(\AppBundle\Entity\Content $contents)
+    public function getIntro()
     {
-        $this->contents->removeElement($contents);
-        $contents->removeEvaluation();
+        return $this->intro;
+    }
+
+    /**
+     * Set disclaimer
+     *
+     * @param string $disclaimer
+     *
+     * @return Evaluation
+     */
+    public function setDisclaimer($disclaimer)
+    {
+        $this->disclaimer = $disclaimer;
+
+        return $this;
+    }
+
+    /**
+     * Get disclaimer
+     *
+     * @return string
+     */
+    public function getDisclaimer()
+    {
+        return $this->disclaimer;
+    }
+
+    /**
+     * Add content
+     *
+     * @param \AppBundle\Entity\Content $content
+     *
+     * @return Evaluation
+     */
+    public function addContent(\AppBundle\Entity\Content $content)
+    {
+        $this->contents[] = $content;
+
+        return $this;
+    }
+
+    /**
+     * Remove content
+     *
+     * @param \AppBundle\Entity\Content $content
+     */
+    public function removeContent(\AppBundle\Entity\Content $content)
+    {
+        $this->contents->removeElement($content);
     }
 
     /**
      * Get contents
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getContents()
     {
         return $this->contents;
-    }
-
-
-    /**
-     * Add question
-     *
-     * @param \AppBundle\Entity\Question\Question $question
-     *
-     * @return Evaluation
-     */
-    public function addQuestion(\AppBundle\Entity\Question\Question $question)
-    {
-        if (!$this->questions->contains($question)){
-            $this->questions[] = $question;
-            $question->setEvaluation($this);
-        }
-
-        return $this;
-    }
-
-    /**
-     * Remove question
-     *
-     * @param \AppBundle\Entity\Question\Question $question
-     */
-    public function removeQuestion(\AppBundle\Entity\Question\Question $question)
-    {
-        $this->questions->removeElement($question);
-        $question->removeEvaluation();
-    }
-
-    /**
-     * Get questions
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getQuestions()
-    {
-        return $this->questions;
-    }
-
-    public function __toString()
-    {
-        return strval($this->name);
-    }
-
-    /**
-     * Set type
-     *
-     * @param \AppBundle\Entity\EvaluationType $type
-     *
-     * @return Evaluation
-     */
-    public function setType(\AppBundle\Entity\EvaluationType $type = null)
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
-    /**
-     * Get type
-     *
-     * @return \AppBundle\Entity\EvaluationType
-     */
-    public function getType()
-    {
-        return $this->type;
     }
 
     /**
@@ -226,11 +228,7 @@ class Evaluation
      */
     public function addMetric(\AppBundle\Entity\Metrics $metric)
     {
-
-        if (!$this->metrics->contains($metric)) {
-            $this->metrics[] = $metric;
-            $metric->setEvaluation($this);
-        }
+        $this->metrics[] = $metric;
 
         return $this;
     }
@@ -254,8 +252,6 @@ class Evaluation
     {
         return $this->metrics;
     }
-
-
 
     /**
      * Add user
@@ -289,5 +285,63 @@ class Evaluation
     public function getUsers()
     {
         return $this->users;
+    }
+
+    /**
+     * Add question
+     *
+     * @param \AppBundle\Entity\Question\Question $question
+     *
+     * @return Evaluation
+     */
+    public function addQuestion(\AppBundle\Entity\Question\Question $question)
+    {
+        $this->questions[] = $question;
+
+        return $this;
+    }
+
+    /**
+     * Remove question
+     *
+     * @param \AppBundle\Entity\Question\Question $question
+     */
+    public function removeQuestion(\AppBundle\Entity\Question\Question $question)
+    {
+        $this->questions->removeElement($question);
+    }
+
+    /**
+     * Get questions
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getQuestions()
+    {
+        return $this->questions;
+    }
+
+    /**
+     * Set type
+     *
+     * @param \AppBundle\Entity\EvaluationType $type
+     *
+     * @return Evaluation
+     */
+    public function setType(\AppBundle\Entity\EvaluationType $type = null)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return \AppBundle\Entity\EvaluationType
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 }

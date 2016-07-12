@@ -8,11 +8,18 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class ContentController extends Controller
 {
     /**
-     * @Route("/content", name="content")
+     * @Route("/evaluation/{id}/content", name="content")
      */
 
-    public function indexAction()
+    public function indexAction($id)
     {
-        return $this->render('content/content.html.twig');
+        $evaluation = $this->getDoctrine()
+            ->getRepository("AppBundle:Evaluation")
+            ->findOneById($id);
+        $contents   = $evaluation->getContents();
+
+        return $this->render('content/content.html.twig', array(
+            'contents' => $contents
+        ));
     }
 }

@@ -9,101 +9,174 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Question\EvaluationQuestionResult;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\Question\Question;
 use AppBundle\Form\QuestionType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 
 
 class QuestionController extends Controller
 {
 
     /**
-     * @Route("/preQuestions", name="preQuestions")
+     * @Route("/evaluation/{id}/preQuestions", name="preQuestions")
      */
 
-    public function renderPreQuestions(Request $request)
+    public function renderPreQuestions($id, Request $request)
     {
 
-        $preQuestionGroups = $this->getDoctrine()
-            ->getRepository('AppBundle:Question\Question')
-            ->findByAppearanceOrderedByOrdinance("pre");
+
+        $evaluation = $this->getDoctrine()
+            ->getRepository("AppBundle:Evaluation")->findOneById($id);
+
+        $questions = $evaluation->getQuestions();
+
+        foreach ($questions as $question){
+            if($question->getAppearance() != "pre"){
+                $questions->removeElement($question);
+            }
+        }
 
         $form = null;
-        $form = $this->createForm(new QuestionType($preQuestionGroups));
+        $form = $this->createForm(new QuestionType($questions));
         $form->add('save', SubmitType::class, array('label' => 'Submit'));
 
         $form->handleRequest($request);
 
-        if($request->getMethod() == 'POST')
-        {
-            if($form->isValid())
-            {
+        if ($request->getMethod() == 'POST') {
+            if ($form->isValid()) {
+
                 $data = null;
                 $data = $form->getData();
-                $user = $this->get('security.token_storage')->getToken()->getUser();
+                $user = $this->getUser();
+
                 $em = $this->getDoctrine()->getManager();
 
-//                var_dump($data);
-//                echo "<br>";
-//                echo "<br>";
-                foreach($data as $key => $value)
-                {
-                    if(gettype($key) == "integer"){
-                        $question = $em->getRepository("AppBundle:Question\Question")->findOneById($key);
-                    }else {
+                foreach ($data as $key => $value) {
 
-                        $result = new EvaluationQuestionResult();
-                        $result->setUser($user);
+                    $result = new EvaluationQuestionResult();
 
-                        if (gettype($value) != "array") {
-//                            echo "key: ";
-//                            var_dump($key);
-//                            echo "value: ";
-//                            var_dump($value);
-//                            echo "<br>";
-                            $result->setResult(strval($value));
-                        } else {
-                            foreach ($value as $value_)
-
-                                //                            echo "second_value: ";
-                                //                            var_dump($value_);
-                                //                            echo "<br>";
-                                $result->setResult(strval($value_));
+                    if (is_int($key)) {
+                        $question = $this->getDoctrine()
+                            ->getRepository("AppBundle:Question\Question")
+                            ->findOneById($key);
+                    } elseif (is_string($key)) {
+                        if (is_array($value)) {
+                            foreach ($value as $k => $a) {
+                                $answer = $this->getDoctrine()
+                                    ->getRepository("AppBundle:Question\Answer")
+                                    ->findOneById($a);
+                                $result->addAnswer($answer);
+                            }
+                        }elseif (is_int($value)){
+                        $answer = $this->getDoctrine()
+                            ->getRepository("AppBundle:Question\Answer")
+                            ->findOneById($value);
+                        $result->addAnswer($answer);
                         }
+                        $result->setEvaluation($evaluation);
+                        $result->setUser($user);
                         $result->setQuestion($question);
+                        if ($question->getType() == "text" or
+                            $question->getType() == "textArea" or
+                            $question->getType() == "slider") {
+                            $result->setTextanswer($value);
+                        }
+                        $result->setComment(null);
                         $em->persist($result);
                     }
                 }
                 $em->flush();
+
+                return $this->render('content/content.html.twig', array(
+                    'evaluation' => $evaluation
+                ));
             }
         }
         return $this->render('questions/questionForm.html.twig', array(
             'form' => $form->createView(),
+            'questions' => $questions
         ));
     }
 
 
     /**
-     * @Route("/postQuestions", name="postQuestions")
+     * @Route("/evaluation/{id}/postQuestions", name="postQuestions")
      */
 
-    public function renderPostQuestions()
+    public function renderPostQuestions($id, Request $request)
     {
 
-        $postQuestionGroups = $this->getDoctrine()
-            ->getRepository('AppBundle:Question\QuestionGroup')
-            ->findByAppearanceOrderedByOrdinance("post");
+        $evaluation = $this->getDoctrine()
+            ->getRepository("AppBundle:Evaluation")->findOneById($id);
 
-        $form = $this->createForm(new QuestionType($postQuestionGroups));
+        $questions = $evaluation->getQuestions();
 
+        foreach ($questions as $question){
+            if($question->getAppearance() != "post"){
+                $questions->removeElement($question);
+            }
+        }
+
+        $form = null;
+        $form = $this->createForm(new QuestionType($questions));
         $form->add('save', SubmitType::class, array('label' => 'Submit'));
 
+        $form->handleRequest($request);
+
+        if ($request->getMethod() == 'POST') {
+            if ($form->isValid()) {
+
+                $data = null;
+                $data = $form->getData();
+                $user = $this->getUser();
+
+                $em = $this->getDoctrine()->getManager();
+
+                foreach ($data as $key => $value) {
+
+                    $result = new EvaluationQuestionResult();
+
+                    if (is_int($key)) {
+                        $question = $this->getDoctrine()
+                            ->getRepository("AppBundle:Question\Question")
+                            ->findOneById($key);
+                    } elseif (is_string($key)) {
+                        if (is_array($value)) {
+                            foreach ($value as $k => $a) {
+                                $answer = $this->getDoctrine()
+                                    ->getRepository("AppBundle:Question\Answer")
+                                    ->findOneById($a);
+                                $result->addAnswer($answer);
+                            }
+                        }elseif (is_int($value)){
+                            $answer = $this->getDoctrine()
+                                ->getRepository("AppBundle:Question\Answer")
+                                ->findOneById($value);
+                            $result->addAnswer($answer);
+                        }
+                        $result->setEvaluation($evaluation);
+                        $result->setUser($user);
+                        $result->setQuestion($question);
+                        if ($question->getType() == "text" or $question->getType() == "textArea") {
+                            $result->setTextanswer($value);
+                        }
+                        $result->setComment(null);
+                        $em->persist($result);
+                    }
+                }
+
+                $em->flush();
+                return $this->render('questions/questionForm.html.twig', array(
+                    'data' => $data
+                ));
+            }
+        }
         return $this->render('questions/questionForm.html.twig', array(
             'form' => $form->createView(),
+            'questions' => $questions
         ));
     }
 

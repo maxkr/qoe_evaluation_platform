@@ -1,6 +1,7 @@
 <?php
 
 namespace AppBundle\Repository\Question;
+use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Query\Expr\Join;
 
 /**
@@ -11,8 +12,20 @@ use Doctrine\ORM\Query\Expr\Join;
  */
 class QuestionRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function findByAppearanceOrderedByOrdinance($appearance)
+    public function findByAppearanceOrderedByOrdinance($appearance, $evaluation)
     {
-        return $this->findBy(array('appearance' => $appearance), array('ordinance' => 'ASC'));
+
+
+        $criteria = Criteria::create()
+            //->where(Criteria::expr()->contains('evaluations', $evaluation))
+            ->where(Criteria::expr()->eq('appearance', $appearance))
+            ->orderBy(array('ordinance' => Criteria::ASC));
+
+       // var_dump($criteria);
+
+         return $this->matching($criteria);
+
+                 //$this->findBy(array('appearance' => $appearance), array('ordinance' => 'ASC'));
+
     }
 }
