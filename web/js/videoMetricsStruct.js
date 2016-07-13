@@ -9,7 +9,7 @@ var metrics = {
         return this.startupTimeEnd - this.startupTimeBegin;
     },
     /* the type of player used in this specific evaluation run */
-    playerType: noPlayer,
+    playerType: "noPlayer",
     setPlayerType: function(type){
         this.playerType = type;
     },

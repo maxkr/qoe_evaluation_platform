@@ -12,20 +12,16 @@ use Doctrine\ORM\Query\Expr\Join;
  */
 class QuestionRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function findByAppearanceOrderedByOrdinance($appearance, $evaluation)
+    public function findByEvalandAppearance($evaluation, $appearance)
     {
+        $qb = $this->createQueryBuilder("p")
+            ->where('p.appearance = :appearance')
+            ->andWhere(':evaluation MEMBER OF p.evaluations')
+            ->setParameters(array(
+                'evaluation' => $evaluation,
+                'appearance' => $appearance
+            ));
 
-
-        $criteria = Criteria::create()
-            //->where(Criteria::expr()->contains('evaluations', $evaluation))
-            ->where(Criteria::expr()->eq('appearance', $appearance))
-            ->orderBy(array('ordinance' => Criteria::ASC));
-
-       // var_dump($criteria);
-
-         return $this->matching($criteria);
-
-                 //$this->findBy(array('appearance' => $appearance), array('ordinance' => 'ASC'));
-
+         return $qb->getQuery()->getResult();
     }
 }

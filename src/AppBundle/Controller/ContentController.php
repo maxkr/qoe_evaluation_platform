@@ -18,8 +18,10 @@ class ContentController extends Controller
             ->findOneById($id);
         $contents   = $evaluation->getContents();
 
+
         return $this->render('content/content.html.twig', array(
-            'contents' => $contents
+            'contents' => $contents,
+            'evalId' => $evaluation->getId()
         ));
     }
 }

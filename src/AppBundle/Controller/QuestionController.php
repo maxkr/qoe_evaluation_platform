@@ -24,20 +24,16 @@ class QuestionController extends Controller
      * @Route("/evaluation/{id}/preQuestions", name="preQuestions")
      */
 
-    public function renderPreQuestions($id, Request $request)
+    public function renderPreQuestionsAction($id, Request $request)
     {
 
 
         $evaluation = $this->getDoctrine()
             ->getRepository("AppBundle:Evaluation")->findOneById($id);
 
-        $questions = $evaluation->getQuestions();
-
-        foreach ($questions as $question){
-            if($question->getAppearance() != "pre"){
-                $questions->removeElement($question);
-            }
-        }
+        $questions = $this->getDoctrine()
+            ->getRepository('AppBundle:Question\Question')
+            ->findByEvalandAppearance($evaluation, "pre");
 
         $form = null;
         $form = $this->createForm(new QuestionType($questions));
@@ -71,10 +67,10 @@ class QuestionController extends Controller
                                 $result->addAnswer($answer);
                             }
                         }elseif (is_int($value)){
-                        $answer = $this->getDoctrine()
-                            ->getRepository("AppBundle:Question\Answer")
-                            ->findOneById($value);
-                        $result->addAnswer($answer);
+                            $answer = $this->getDoctrine()
+                                ->getRepository("AppBundle:Question\Answer")
+                                ->findOneById($value);
+                            $result->addAnswer($answer);
                         }
                         $result->setEvaluation($evaluation);
                         $result->setUser($user);
@@ -90,8 +86,8 @@ class QuestionController extends Controller
                 }
                 $em->flush();
 
-                return $this->render('content/content.html.twig', array(
-                    'evaluation' => $evaluation
+                return $this->redirectToRoute('content', array(
+                    'id' => $evaluation->getId()
                 ));
             }
         }
@@ -106,19 +102,15 @@ class QuestionController extends Controller
      * @Route("/evaluation/{id}/postQuestions", name="postQuestions")
      */
 
-    public function renderPostQuestions($id, Request $request)
+    public function renderPostQuestionsAction($id, Request $request)
     {
 
         $evaluation = $this->getDoctrine()
             ->getRepository("AppBundle:Evaluation")->findOneById($id);
 
-        $questions = $evaluation->getQuestions();
-
-        foreach ($questions as $question){
-            if($question->getAppearance() != "post"){
-                $questions->removeElement($question);
-            }
-        }
+        $questions = $this->getDoctrine()
+            ->getRepository('AppBundle:Question\Question')
+            ->findByEvalandAppearance($evaluation, "post");
 
         $form = null;
         $form = $this->createForm(new QuestionType($questions));
@@ -169,9 +161,7 @@ class QuestionController extends Controller
                 }
 
                 $em->flush();
-                return $this->render('questions/questionForm.html.twig', array(
-                    'data' => $data
-                ));
+                return $this->render('evaluation/outro.html.twig');
             }
         }
         return $this->render('questions/questionForm.html.twig', array(

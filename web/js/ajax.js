@@ -11,7 +11,7 @@ var metrics =
 $.ajax(
     {	url: metricsUrl,
         method:'POST',
-        data: metrics.getPostData()
+        data: metrics
     })
     .done(function(/*args vom server*/)
     {
@@ -22,17 +22,17 @@ $.ajax(
         alert ("hot net hinghaut");
     });
 
-
-var metrics =
-{
-    //....
-
-    getPostData: function()
-    {
-        var postData = {};
-
-        postData["fullscreen"] = this.getFullscreen();
-        //-----
-
-    }
-}
+//
+//var metrics =
+//{
+//    //....
+//
+//    getPostData: function()
+//    {
+//        var postData = {};
+//
+//        postData["fullscreen"] = this.getFullscreen();
+//        //-----
+//
+//    }
+//}

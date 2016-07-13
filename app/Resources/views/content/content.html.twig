@@ -16,23 +16,99 @@
 {% endblock %}
 
 {% block javascripts %}
-    <script>
-        var count = '{{ contents|length }}';
-
-
-
-
-        var paths               = new Array();
-        var playBackOffsets     = new Array();
-        var playBackDurations   = new Array();
-        {% for content in contents %}
-            paths.push('{{ content.path }}');
-        {% endfor %}
-
-
-
-    </script>
     <script src="{{ asset('https://bitmovin-a.akamaihd.net/bitdash/latest/bitdash.min.js') }}"></script>
     <script src="{{ asset('js/bdplayer.js') }}"></script>
     <script src="{{ asset('js/videoMetricsStruct.js') }}"></script>
+    <script src="{{ asset('js/fingerprint.js' )}}"></script>
+    <script src="{{ asset('js/util.js') }}"></script>
+
+    <script>
+        var count = '{{ contents|length }}';
+        var evalContents = {};
+        var evalContentMetrics = {};
+
+        {% for content in contents %}
+
+        evalContents['{{ content.name }}'] = {
+            path:               '{{ content.path }}',
+            ordinance:          '{{ content.ordinance }}',
+            playbackOffset:     '{{ content.playbackOffset }}',
+            playbackDuration:   '{{ content.playbackDuration }}',
+            ratingTime:         '{{ content.ratingTime }}',
+            ratingLowerBound:   '{{ content.ratingLowerBound }}',
+            ratingUpperBound:   '{{ content.ratingUpperBound }}'
+        };
+        {% endfor %}
+
+        var paused = false;
+        var pausedTime = 0;
+        var stalled = false;
+        var stalledTime = 0;
+
+        /* log browser focus */
+        window.onfocus = function(){
+            metrics.incBFChange();
+        }
+        window.onblur = function(){
+            metrics.incBFChange();
+        }
+
+        /* disable context menu (right mouse click) */
+        document.oncontextmenu = document.body.oncontextmenu = function() {return false;}
+
+        var i = 0;
+        var contentLoop = function(contents) {
+            playUntil(contents[Object.keys(contents)[i]], function() {
+                saveMetrics(contents[Object.keys(contents)[i]]);
+                i++;
+                if(i < Object.keys(contents).length) {
+                    contentLoop(contents)
+                }else{
+
+                    var metricsUrl = window.location.origin + "/evaluation/storeMetrics";
+
+                    $.ajax(
+                            {	url: metricsUrl,
+                                method:'POST',
+                                data: evalContentMetrics
+                            })
+                            .done(function(/*args vom server*/)
+                            {
+                                console.log("Storing metrics...");
+                            })
+                            .fail(function(/*args vom server*/)
+                            {
+                                console.log("problems handling metrics result...");
+                            });
+                    window.location.replace(window.location.origin + "/evaluation/{{ evalId }}/postQuestions");
+                }
+            });
+        }
+
+        function playUntil(content,mediaEnded) {
+            metrics.startupTimeBegin = Date.now();
+            metrics.setFullscreen(isFullscreen());
+            metrics.setFingerprint(new Fingerprint().get());
+            setupBDPlayer(content.path, content.playbackOffset, content.playbackDuration, mediaEnded)
+        }
+
+        contentLoop(evalContents);
+
+        function saveMetrics(content) {
+            evalContentMetrics[content.name] = {
+            fullscreen:             metrics.getFullscreen(),
+            playerType:             metrics.getPlayerType(),
+            bfchange:               metrics.getBFChange(),
+            fingerprint:            metrics.getFingerprint(),
+            buffer:                 genCSV(metrics.getBufferLevels(), ";"),
+            guessedBw:              genCSV(metrics.getGuessedBw(), ";"),
+            representationBitrate:  genCSV(metrics.getRepresentationBw(), ";"),
+            videoTimes:             genCSV(metrics.getVideoTime(), ";"),
+            startupTime:            metrics.getStartupTime(),
+            pauses:                 genCSV(metrics.getPauses(), ";"),
+            stalls:                 genCSV(metrics.getStalls(), ";")
+            }
+        }
+
+    </script>
 {% endblock %}

@@ -9,13 +9,11 @@ use Symfony\Component\HttpFoundation\Response;
 class StoreMetricsController extends Controller
 {
     /**
-     * @Route("/storeMetrics", name="storeMetrics")
+     * @Route("/evaluation/storeMetrics", name="storeMetrics")
      */
 
-    public function indexAction()
+    public function storeMetricsAction()
     {
-        return new Response(
-            '<html><body>Lucky number: </body></html>'
-        );
+        return $this->redirectToRoute('evaluationIndex');
     }
 }
