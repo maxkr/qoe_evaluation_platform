@@ -6,6 +6,7 @@
 
 
 {% block body %}
+    {{ parent() }}
         <div style="padding: 0 20% 0 15%";>
         {#{% if questions is defined%}#}
             {#{{ dump(questions) }}#}
@@ -24,12 +25,9 @@
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('css/bootstrap-slider.css') }}" />
-
-
 {% endblock %}
 
-
-
 {% block javascripts %}
+    {{ parent() }}
     <script src="{{ asset('js/bootstrap-slider.js') }}"></script>
 {% endblock %}

@@ -36,9 +36,9 @@ class QuestionType extends AbstractType
                 if(!(empty($radioChoices))) {
                     $builder->add($question->getId(), HiddenType::class);
                     $builder->add($question->getName(), ChoiceType::class, array(
-                        'choices' => $radioChoices,
-                        'multiple' => false,
-                        'expanded' => true,
+                        'choices'           => $radioChoices,
+                        'multiple'          => false,
+                        'expanded'          => true,
                         'choices_as_values' => true
                     ));
                 }
@@ -50,9 +50,9 @@ class QuestionType extends AbstractType
                 if(!(empty($selectionChoices))) {
                     $builder->add($question->getId(), HiddenType::class);
                     $builder->add($question->getName(), ChoiceType::class, array(
-                        'choices' => $selectionChoices,
-                        'multiple' => false,
-                        'expanded' => false,
+                        'choices'           => $selectionChoices,
+                        'multiple'          => false,
+                        'expanded'          => false,
                         'choices_as_values' => true,
                     ));
                 }
@@ -64,9 +64,9 @@ class QuestionType extends AbstractType
                 if(!(empty($checkChoices))){
                     $builder->add($question->getId(), HiddenType::class);
                     $builder->add($question->getName(), ChoiceType::class, array(
-                        'choices' => $checkChoices,
-                        'multiple' => true,
-                        'expanded' => true,
+                        'choices'           => $checkChoices,
+                        'multiple'          => true,
+                        'expanded'          => true,
                         'choices_as_values' => true
                     ));
                 }
@@ -85,11 +85,11 @@ class QuestionType extends AbstractType
                     $builder->add($question->getId(), HiddenType::class);
                     $builder->add($question->getName(), RangeType::class, array(
                         'attr' => array(
-                            "data-provide" => "slider",
+                            "data-provide"      => "slider",
                             'data-slider-min'   => $minMax["sliderMin"],
                             'data-slider-max'   => $minMax["sliderMax"],
                             'data-slider-value' => $minMax["sliderMax"] / 2,
-                            "style" => "width:100%;"
+                            "style"             => "width:100%;"
                         )
                     ));
                 }

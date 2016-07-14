@@ -1,8 +1,10 @@
 {% extends 'base.html.twig' %}
 {% block body %}
     {{ parent() }}
-    <div id="video" class="centered_video">
-    </div>
+    <div id="video" class="centered_video"></div>
+    {% if data is defined %}
+        {{ dump(data) }}
+    {% endif %}
 {% endblock %}
 
 {% block stylesheets %}
@@ -30,6 +32,8 @@
         {% for content in contents %}
 
         evalContents['{{ content.name }}'] = {
+            id:                 '{{ content.id }}',
+            name:               '{{ content.name }}',
             path:               '{{ content.path }}',
             ordinance:          '{{ content.ordinance }}',
             playbackOffset:     '{{ content.playbackOffset }}',
@@ -63,24 +67,6 @@
                 i++;
                 if(i < Object.keys(contents).length) {
                     contentLoop(contents)
-                }else{
-
-                    var metricsUrl = window.location.origin + "/evaluation/storeMetrics";
-
-                    $.ajax(
-                            {	url: metricsUrl,
-                                method:'POST',
-                                data: evalContentMetrics
-                            })
-                            .done(function(/*args vom server*/)
-                            {
-                                console.log("Storing metrics...");
-                            })
-                            .fail(function(/*args vom server*/)
-                            {
-                                console.log("problems handling metrics result...");
-                            });
-                    window.location.replace(window.location.origin + "/evaluation/{{ evalId }}/postQuestions");
                 }
             });
         }
@@ -95,7 +81,7 @@
         contentLoop(evalContents);
 
         function saveMetrics(content) {
-            evalContentMetrics[content.name] = {
+            evalContentMetrics = {
             fullscreen:             metrics.getFullscreen(),
             playerType:             metrics.getPlayerType(),
             bfchange:               metrics.getBFChange(),
@@ -108,7 +94,59 @@
             pauses:                 genCSV(metrics.getPauses(), ";"),
             stalls:                 genCSV(metrics.getStalls(), ";")
             }
+
+
+
+            var metricsUrl = window.location.origin + "/evaluation/" + {{ evalId }}+ "/content/" + content.id;
+
+            console.log(JSON.stringify(evalContentMetrics));
+
+            $.ajax(
+                    {	url: metricsUrl,
+                        method:'POST',
+                        dataType: 'json',
+                        data: JSON.stringify(evalContentMetrics)
+                    })
+                    .done(function(data)
+                    {
+                        console.log("Storing metrics...");
+                        console.log(data);
+                    })
+                    .fail(function(data)
+                    {
+                        console.log("problems handling metrics result...");
+                        console.log(data);
+                    });
         }
 
     </script>
 {% endblock %}
+
+
+{#
+{
+
+var metricsUrl = window.location.origin + "/evaluation/storeMetrics";
+
+$.ajax(
+{	url: metricsUrl,
+method:'POST',
+dataType: 'JSON',
+data: evalContentMetrics
+})
+.done(function(/*args vom server*/)
+{
+console.log("Storing metrics...");
+})
+.fail(function(/*args vom server*/)
+{
+console.log("problems handling metrics result...");
+});
+//                    window.location.replace(window.location.origin + "/evaluation/storeMetrics");
+}#}
+
+
+{#
+var formName = '{{ form.vars.name }}';
+document.getElementById(formName.concat("_result")).value = evalContentMetrics;
+document.getElementById('content_results_form').submit();#}
