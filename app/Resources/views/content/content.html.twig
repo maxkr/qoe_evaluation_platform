@@ -18,16 +18,19 @@
 {% endblock %}
 
 {% block javascripts %}
+    {{ parent() }}
     <script src="{{ asset('https://bitmovin-a.akamaihd.net/bitdash/latest/bitdash.min.js') }}"></script>
     <script src="{{ asset('js/bdplayer.js') }}"></script>
-    <script src="{{ asset('js/videoMetricsStruct.js') }}"></script>
+    <script src="{{ asset('js/VideoMetricsStruct.js') }}"></script>
     <script src="{{ asset('js/fingerprint.js' )}}"></script>
     <script src="{{ asset('js/util.js') }}"></script>
+    <script src="{{ asset('js/bootstrap-slider.js') }}"></script>
 
     <script>
         var count = '{{ contents|length }}';
         var evalContents = {};
         var evalContentMetrics = {};
+        var metrics = new Metrics();
 
         {% for content in contents %}
 
@@ -60,13 +63,22 @@
         /* disable context menu (right mouse click) */
         document.oncontextmenu = document.body.oncontextmenu = function() {return false;}
 
-        var i = 0;
+        var loopcount = 0;
         var contentLoop = function(contents) {
-            playUntil(contents[Object.keys(contents)[i]], function() {
-                saveMetrics(contents[Object.keys(contents)[i]]);
-                i++;
-                if(i < Object.keys(contents).length) {
-                    contentLoop(contents)
+            var currentContent = contents[Object.keys(contents)[loopcount]];
+            playUntil(currentContent, function() {
+                saveMetrics(currentContent);
+//                for (var prop in metrics) { if (metrics.hasOwnProperty(prop)) { metrics[prop] = ""; } }
+                loopcount++;
+                metrics.reset();
+                if(loopcount < Object.keys(contents).length) {
+                    showSlider(currentContent);
+                    setTimeout(contentLoop, 5000, contents);
+                }else{
+                    showSlider(currentContent);
+                    setTimeout(function() {
+                        window.location.replace(window.location.origin + "/evaluation/" + {{ evalId }} + "/postQuestions");
+                    }, 5000);
                 }
             });
         }
@@ -78,28 +90,24 @@
             setupBDPlayer(content.path, content.playbackOffset, content.playbackDuration, mediaEnded)
         }
 
-        contentLoop(evalContents);
-
         function saveMetrics(content) {
+            evalContentMetrics = null;
             evalContentMetrics = {
-            fullscreen:             metrics.getFullscreen(),
-            playerType:             metrics.getPlayerType(),
-            bfchange:               metrics.getBFChange(),
-            fingerprint:            metrics.getFingerprint(),
-            buffer:                 genCSV(metrics.getBufferLevels(), ";"),
-            guessedBw:              genCSV(metrics.getGuessedBw(), ";"),
-            representationBitrate:  genCSV(metrics.getRepresentationBw(), ";"),
-            videoTimes:             genCSV(metrics.getVideoTime(), ";"),
-            startupTime:            metrics.getStartupTime(),
-            pauses:                 genCSV(metrics.getPauses(), ";"),
-            stalls:                 genCSV(metrics.getStalls(), ";")
+                fullscreen:             metrics.getFullscreen(),
+                playerType:             metrics.getPlayerType(),
+                bfchange:               metrics.getBFChange(),
+                fingerprint:            metrics.getFingerprint(),
+                buffer:                 genCSV(metrics.getBufferLevels(), ";"),
+                guessedBw:              genCSV(metrics.getGuessedBw(), ";"),
+                representationBitrate:  genCSV(metrics.getRepresentationBw(), ";"),
+                videoTimes:             genCSV(metrics.getVideoTime(), ";"),
+                startupTime:            metrics.getStartupTime(),
+                pauses:                 genCSV(metrics.getPauses(), ";"),
+                stalls:                 genCSV(metrics.getStalls(), ";"),
+                userRating:             metrics.getuserRating()
             }
 
-
-
             var metricsUrl = window.location.origin + "/evaluation/" + {{ evalId }}+ "/content/" + content.id;
-
-            console.log(JSON.stringify(evalContentMetrics));
 
             $.ajax(
                     {	url: metricsUrl,
@@ -110,14 +118,27 @@
                     .done(function(data)
                     {
                         console.log("Storing metrics...");
-                        console.log(data);
+//                        console.log(data);
                     })
                     .fail(function(data)
                     {
                         console.log("problems handling metrics result...");
-                        console.log(data);
+//                        console.log(data);
                     });
         }
+
+        function showSlider() {
+            $("#video").slider({
+                min: '0',
+                max: '10'
+            });
+        }
+
+     /*   function sleep (time) {
+            return new Promise((resolve) => setTimeout(resolve, time));
+        }*/
+
+        contentLoop(evalContents);
 
     </script>
 {% endblock %}

@@ -50,7 +50,7 @@ function setupBDPlayer(mpdPath, playbackOffset, playbackDuration, mediaEnded) {
             onPlaybackFinished: function(e){},
         }
     }
-
+    $("#video").show();
     bdplayer = bitdash("video");
 
     bdplayer.setup(config).then(function(value) {
