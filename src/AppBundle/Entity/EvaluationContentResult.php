@@ -39,73 +39,73 @@ class EvaluationContentResult
     private $content;
 
     /**
-     * @ORM\Column(name="bfchange", type="text")
+     * @ORM\Column(name="bfchange", type="text", nullable=true)
      */
 
     private $bfchange;
 
     /**
-     * @ORM\Column(name="fingerprint", type="text")
+     * @ORM\Column(name="fingerprint", type="text", nullable=true)
      */
 
     private $fingerprint;
 
     /**
-     * @ORM\Column(name="fullscreen", type="text")
+     * @ORM\Column(name="fullscreen", type="text", nullable=true)
      */
 
     private $fullscreen;
 
     /**
-     * @ORM\Column(name="buffer", type="text")
+     * @ORM\Column(name="buffer", type="text", nullable=true)
      */
 
     private $buffer;
 
     /**
-     * @ORM\Column(name="representationBitrate", type="text")
+     * @ORM\Column(name="representationBitrate", type="text", nullable=true)
      */
 
     private $representationBitrate;
 
     /**
-     * @ORM\Column(name="guessedBw", type="text")
+     * @ORM\Column(name="guessedBw", type="text", nullable=true)
      */
 
     private $guessedBw;
 
     /**
-     * @ORM\Column(name="pauses", type="text")
+     * @ORM\Column(name="pauses", type="text", nullable=true)
      */
 
     private $pauses;
 
     /**
-     * @ORM\Column(name="stalls", type="text")
+     * @ORM\Column(name="stalls", type="text", nullable=true)
      */
 
     private $stalls;
 
     /**
-     * @ORM\Column(name="startupTime", type="text")
+     * @ORM\Column(name="startupTime", type="text", nullable=true)
      */
 
     private $startupTime;
 
     /**
-     * @ORM\Column(name="videoTimes", type="text")
+     * @ORM\Column(name="videoTimes", type="text", nullable=true)
      */
 
     private $videoTimes;
 
     /**
-     * @ORM\Column(name="playerType", type="text")
+     * @ORM\Column(name="playerType", type="text", nullable=true)
      */
 
     private $playerType;
 
     /**
-     * @ORM\Column(name="userRating", type="text")
+     * @ORM\Column(name="userRating", type="text", nullable=true)
      */
 
     private $userRating;

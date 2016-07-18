@@ -1,24 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ee09e785-31c2-4763-9d95-25eb37ce231f" name="Default" comment="eval methods on the way">
+    <list default="true" id="ee09e785-31c2-4763-9d95-25eb37ce231f" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/ContentLoopACR.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/VideoMetricsStructContinuousRating.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/bdplayerACR.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/bdplayerDCR.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/bdplayerSSCQE.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/contentLoopDCR.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/contentLoopSSCQE.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/base.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/content/content.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/content/content.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/SymfonyRequirements.php" afterPath="$PROJECT_DIR$/app/SymfonyRequirements.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/check.php" afterPath="$PROJECT_DIR$/app/check.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/ContentController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/ContentController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/QuestionController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/QuestionController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/DataFixtures/ORM/QuestionTypes.php" afterPath="$PROJECT_DIR$/src/AppBundle/DataFixtures/ORM/QuestionTypes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/DataFixtures/ORM/TestContents.php" afterPath="$PROJECT_DIR$/src/AppBundle/DataFixtures/ORM/TestContents.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Evaluation.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Evaluation.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Entity/EvaluationContentResult.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/EvaluationContentResult.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Question/Answer.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Question/Answer.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Form/QuestionType.php" afterPath="$PROJECT_DIR$/src/AppBundle/Form/QuestionType.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/config.php" afterPath="$PROJECT_DIR$/web/config.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/css/bootstrap-slider.css" afterPath="$PROJECT_DIR$/web/css/bootstrap-slider.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/bdplayer.js" afterPath="$PROJECT_DIR$/web/js/bdplayer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/bootstrap-slider.js" afterPath="$PROJECT_DIR$/web/js/bootstrap-slider.js" />
     </list>
     <ignored path="qoe_platform_new.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -43,30 +37,41 @@
       <file leaf-file-name="content.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Resources/views/content/content.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-41.384617">
-              <caret line="177" column="0" selection-start-line="177" selection-start-column="0" selection-end-line="177" selection-end-column="0" />
+            <state vertical-scroll-proportion="25.5">
+              <caret line="33" column="9" selection-start-line="33" selection-start-column="9" selection-end-line="33" selection-end-column="9" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#2;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="config.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/web/config.php">
+      <file leaf-file-name="bdplayerSSCQE.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/js/bdplayerSSCQE.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.1600497">
-              <caret line="63" column="42" selection-start-line="63" selection-start-column="42" selection-end-line="63" selection-end-column="42" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="56" column="1" selection-start-line="56" selection-start-column="1" selection-end-line="64" selection-end-column="23" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="bootstrap-slider.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/css/bootstrap-slider.css">
+      <file leaf-file-name="VideoMetricsStructContinuousRating.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/js/VideoMetricsStructContinuousRating.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="33.346153">
-              <caret line="15" column="2" selection-start-line="15" selection-start-column="2" selection-end-line="15" selection-end-column="2" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="122" column="36" selection-start-line="122" selection-start-column="36" selection-end-line="122" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="contentLoopSSCQE.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/web/js/contentLoopSSCQE.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.3814554">
+              <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -76,37 +81,7 @@
         <entry file="file://$PROJECT_DIR$/web/js/bdplayer.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="69" column="42" selection-start-line="69" selection-start-column="42" selection-end-line="69" selection-end-column="42" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ContentController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/ContentController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-22.884615">
-              <caret line="81" column="58" selection-start-line="81" selection-start-column="58" selection-end-line="81" selection-end-column="58" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Resources/views/default/index.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.9615384">
-              <caret line="3" column="18" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="18" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="QuestionTypes.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/DataFixtures/ORM/QuestionTypes.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-26.538462">
-              <caret line="53" column="49" selection-start-line="53" selection-start-column="49" selection-end-line="53" selection-end-column="49" />
+              <caret line="70" column="9" selection-start-line="70" selection-start-column="9" selection-end-line="70" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -116,17 +91,7 @@
         <entry file="file://$PROJECT_DIR$/docs/Commands.txt">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="48" column="3" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="45" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="QuestionType.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/QuestionType.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-24.846153">
-              <caret line="91" column="61" selection-start-line="91" selection-start-column="61" selection-end-line="91" selection-end-column="61" />
+              <caret line="21" column="7" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="50" />
               <folding />
             </state>
           </provider>
@@ -135,8 +100,8 @@
       <file leaf-file-name="EvaluationContentResult.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/EvaluationContentResult.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-25.576923">
-              <caret line="139" column="13" selection-start-line="139" selection-start-column="13" selection-end-line="139" selection-end-column="13" />
+            <state vertical-scroll-proportion="-22.884615">
+              <caret line="47" column="66" selection-start-line="47" selection-start-column="66" selection-end-line="47" selection-end-column="66" />
               <folding />
             </state>
           </provider>
@@ -162,13 +127,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/app/Resources/views/questions/form_help.html.twig" />
-        <option value="$PROJECT_DIR$/app/config/config.yml" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Form/VideoMetrics.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Controller/testController.php" />
-        <option value="$PROJECT_DIR$/app/AppKernel.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Repository/Question/QuestionGroupRepository.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/DataFixtures/ORM/TestEvaluations.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/DataFixtures/ORM/TestQuestions.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/DataFixtures/ORM/TestUsers.php" />
@@ -210,9 +168,16 @@
         <option value="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/questions/questionForm.html.twig" />
         <option value="$PROJECT_DIR$/web/css/bootstrap-slider.css" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Entity/EvaluationContentResult.php" />
+        <option value="$PROJECT_DIR$/web/js/ContentLoopACR.js" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/ContentController.php" />
+        <option value="$PROJECT_DIR$/web/js/bdplayerDCR.js" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Entity/EvaluationContentResult.php" />
+        <option value="$PROJECT_DIR$/web/js/contentLoopDCR.js" />
+        <option value="$PROJECT_DIR$/web/js/contentLoopACR.js" />
         <option value="$PROJECT_DIR$/app/Resources/views/content/content.html.twig" />
+        <option value="$PROJECT_DIR$/web/js/bdplayerSSCQE.js" />
+        <option value="$PROJECT_DIR$/web/js/VideoMetricsStructContinuousRating.js" />
+        <option value="$PROJECT_DIR$/web/js/contentLoopSSCQE.js" />
       </list>
     </option>
   </component>
@@ -266,8 +231,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -690,7 +654,8 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -701,19 +666,19 @@
     <property name="settings.editor.splitter.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/web/js" />
-      <recent name="$PROJECT_DIR$/web/css" />
-      <recent name="$PROJECT_DIR$/app/Resources/views/evaluation" />
-      <recent name="$PROJECT_DIR$/app/Resources/FOSUserBundle/views" />
-      <recent name="$PROJECT_DIR$/src/AppBundle/DataFixtures/ORM" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/Resources/views/questions" />
       <recent name="$PROJECT_DIR$/src/AppBundle/Repository/Question" />
       <recent name="$PROJECT_DIR$/src/AppBundle/Entity/Question" />
       <recent name="$PROJECT_DIR$/src/AppBundle/Repository" />
       <recent name="$PROJECT_DIR$/src/AppBundle/Entity" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\GitHub\qoe_evaluation_platform\web\js" />
+      <recent name="$PROJECT_DIR$/web/js" />
+      <recent name="$PROJECT_DIR$/web/css" />
+      <recent name="$PROJECT_DIR$/app/Resources/views/evaluation" />
+      <recent name="$PROJECT_DIR$/app/Resources/FOSUserBundle/views" />
     </key>
   </component>
   <component name="RunManager">
@@ -1163,7 +1128,8 @@
       <workItem from="1467618309289" duration="2390000" />
       <workItem from="1467876154217" duration="117746000" />
       <workItem from="1468508244724" duration="6537000" />
-      <workItem from="1468777475829" duration="20186000" />
+      <workItem from="1468777475829" duration="23729000" />
+      <workItem from="1468866476194" duration="7182000" />
     </task>
     <task id="LOCAL-00001" summary="Second commit">
       <created>1463061976387</created>
@@ -1231,11 +1197,17 @@
       <option name="project" value="LOCAL" />
       <updated>1468499449327</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="eval methods on the way">
+      <created>1468857739546</created>
+      <option name="number" value="00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1468857739546</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="340196000" />
+    <option name="totallyTimeSpent" value="350921000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="2576" height="1416" extended-state="0" />
@@ -1243,27 +1215,27 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32969603" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3206673" sideWeight="0.50193477" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32946378" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31410757" sideWeight="0.49806523" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31410757" sideWeight="0.49806523" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27901432" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27901432" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32969603" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32969603" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32993513" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -1301,62 +1273,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/Question/AnswerRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.50591713">
-          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/Question/EvaluationQuestionResultRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2662722">
-          <caret line="10" column="40" selection-start-line="10" selection-start-column="40" selection-end-line="10" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/DataFixtures/ORM/EvaluationTypes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.037037">
-          <caret line="37" column="24" selection-start-line="37" selection-start-column="24" selection-end-line="37" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/ContentRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/config/config.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="38" column="0" selection-start-line="38" selection-start-column="1" selection-end-line="39" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/FOSUserBundle/views/ChangePassword/changePassword.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0">
-          <caret line="0" column="12" selection-start-line="0" selection-start-column="12" selection-end-line="0" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Controller/SecurityController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.48076922">
-          <caret line="76" column="23" selection-start-line="76" selection-start-column="23" selection-end-line="76" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Model/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.6201551">
-          <caret line="225" column="40" selection-start-line="225" selection-start-column="20" selection-end-line="225" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Registration/register.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1514,14 +1430,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/js/VideoMetricsStruct.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="122" column="32" selection-start-line="122" selection-start-column="32" selection-end-line="122" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Content.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1534,7 +1442,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-28.846153">
           <caret line="52" column="17" selection-start-line="52" selection-start-column="17" selection-end-line="52" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1550,7 +1457,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-17.653847">
           <caret line="40" column="41" selection-start-line="40" selection-start-column="41" selection-end-line="40" selection-end-column="41" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1574,10 +1480,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-22.884615">
           <caret line="86" column="21" selection-start-line="86" selection-start-column="21" selection-end-line="86" selection-end-column="21" />
-          <folding>
-            <element signature="e#6#95#0#PHP" expanded="true" />
-            <element signature="e#130#185#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1585,13 +1487,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-26.538462">
           <caret line="53" column="49" selection-start-line="53" selection-start-column="49" selection-end-line="53" selection-end-column="49" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/QuestionType.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-24.846153">
+        <state vertical-scroll-proportion="0.0">
           <caret line="91" column="61" selection-start-line="91" selection-start-column="61" selection-end-line="91" selection-end-column="61" />
           <folding />
         </state>
@@ -1601,23 +1502,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/EvaluationContentResult.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-25.576923">
-          <caret line="139" column="13" selection-start-line="139" selection-start-column="13" selection-end-line="139" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/Commands.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="48" column="3" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="45" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1625,7 +1509,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.535109">
           <caret line="26" column="4" selection-start-line="26" selection-start-column="4" selection-end-line="26" selection-end-column="76" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1637,45 +1520,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/ContentController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-22.884615">
-          <caret line="81" column="58" selection-start-line="81" selection-start-column="58" selection-end-line="81" selection-end-column="58" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/default/index.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.9615384">
-          <caret line="3" column="18" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/js/bdplayer.js">
-      <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="69" column="42" selection-start-line="69" selection-start-column="42" selection-end-line="69" selection-end-column="42" />
+          <caret line="3" column="18" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="18" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/css/bootstrap-slider.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="33.346153">
+        <state vertical-scroll-proportion="0.0">
           <caret line="15" column="2" selection-start-line="15" selection-start-column="2" selection-end-line="15" selection-end-column="2" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/content/content.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-41.384617">
-          <caret line="177" column="0" selection-start-line="177" selection-start-column="0" selection-end-line="177" selection-end-column="0" />
-          <folding>
-            <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1683,6 +1540,134 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.1600497">
           <caret line="63" column="42" selection-start-line="63" selection-start-column="42" selection-end-line="63" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/ContentController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-19.615385">
+          <caret line="35" column="51" selection-start-line="35" selection-start-column="51" selection-end-line="35" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/cache/dev/twig/0d/0ddb8a3219fe9a6c0882bee5f8ed49ad52f692c94a31e0a61fc59211ea9c16c0.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.34367245">
+          <caret line="145" column="95" selection-start-line="145" selection-start-column="95" selection-end-line="145" selection-end-column="95" />
+          <folding>
+            <marker date="1468873153786" expanded="false" signature="2132:2145" placeholder="..." />
+            <marker date="1468873153786" expanded="true" signature="2147:2383" placeholder="..." />
+            <marker date="1468873153786" expanded="true" signature="2175:2371" placeholder="..." />
+            <marker date="1468873153786" expanded="true" signature="2260:2356" placeholder="..." />
+            <marker date="1468873153786" expanded="true" signature="3740:4166" placeholder="..." />
+            <marker date="1468873153786" expanded="true" signature="3767:3836" placeholder="{...}" />
+            <marker date="1468873153786" expanded="true" signature="3858:3966" placeholder="{...}" />
+            <marker date="1468873153786" expanded="true" signature="4013:4057" placeholder="{...}" />
+            <marker date="1468873153786" expanded="true" signature="4092:4154" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/js/bdplayerACR.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.78051645">
+          <caret line="68" column="31" selection-start-line="68" selection-start-column="31" selection-end-line="68" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/Commands.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="21" column="7" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/EvaluationContentResult.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-22.884615">
+          <caret line="47" column="66" selection-start-line="47" selection-start-column="66" selection-end-line="47" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/js/bdplayerDCR.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.43896714">
+          <caret line="11" column="48" selection-start-line="11" selection-start-column="48" selection-end-line="11" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/js/contentLoopDCR.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.039906103">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#46#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/js/VideoMetricsStruct.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8802817">
+          <caret line="122" column="32" selection-start-line="122" selection-start-column="32" selection-end-line="122" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/js/bdplayer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="70" column="9" selection-start-line="70" selection-start-column="9" selection-end-line="70" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/js/contentLoopACR.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="96" column="4" selection-start-line="96" selection-start-column="4" selection-end-line="103" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#46#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/content/content.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="25.5">
+          <caret line="33" column="9" selection-start-line="33" selection-start-column="9" selection-end-line="33" selection-end-column="9" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/js/bdplayerSSCQE.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="56" column="1" selection-start-line="56" selection-start-column="1" selection-end-line="64" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/js/VideoMetricsStructContinuousRating.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="122" column="36" selection-start-line="122" selection-start-column="36" selection-end-line="122" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/js/contentLoopSSCQE.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3814554">
+          <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
           <folding />
         </state>
       </provider>

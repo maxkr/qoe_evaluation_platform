@@ -31,10 +31,10 @@ class ContentController extends Controller
 
 
         return $this->render('content/content.html.twig', array(
-            'contents'  => $contents,
-            'evalId'    => $evaluation->getId(),
-            'form'      => $form->createView(),
-            'result'    => $result_a
+            'contents'      => $contents,
+            'evaluation'    => $evaluation,
+            'form'          => $form->createView(),
+            'result'        => $result_a
         ));
     }
 
