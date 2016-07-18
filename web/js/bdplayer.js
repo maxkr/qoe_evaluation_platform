@@ -3,10 +3,14 @@
  */
 
 
-function setupBDPlayer(mpdPath, playbackOffset, playbackDuration, mediaEnded) {
+function setupBDPlayer(content, showSlider, mediaEnded) {
 
     var bdplayer;
     var intervalId = -1;
+
+    var mpdPath = content.path;
+    var playbackOffset = content.playbackOffset;
+    var playbackDuration = content.playbackDuration;
 
     var config = {
         key: 'b231b798-1270-4542-b310-a632825d3783',
@@ -63,7 +67,7 @@ function setupBDPlayer(mpdPath, playbackOffset, playbackDuration, mediaEnded) {
         if(playbackDuration < bdplayer.getCurrentTime()){ /* getCurrentTime in secs*/
             clearInterval(intervalId);
             bdplayer.destroy();
-            mediaEnded();
+            showSlider(content, mediaEnded);
         }
     }
 }

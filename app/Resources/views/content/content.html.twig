@@ -1,7 +1,19 @@
 {% extends 'base.html.twig' %}
 {% block body %}
     {{ parent() }}
+
     <div id="video" class="centered_video"></div>
+
+    <div id="qoeSlider" class="centerFlex" style="display: none">
+        <div class="row">
+            <h3>Please rate the previous video:</h3>
+            <div class="row">
+                <input id="ex1" data-slider-id='ex1Slider' type="text"/>
+            </div>
+        </div>
+
+    </div>
+
     {% if data is defined %}
         {{ dump(data) }}
     {% endif %}
@@ -9,10 +21,25 @@
 
 {% block stylesheets %}
     {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/bootstrap-slider.css') }}" />
     <style>
         .centered_video  {
             padding: 5%;
             background: #AAAAAA;
+        }
+
+        .centerFlex {
+            align-items: center;
+            display: flex;
+            justify-content: center;
+        }
+        
+        #ex1Slider .slider-selection {
+            background: #BABABA;
+        }
+        .slider.slider-horizontal {
+            width: 100%;
+            height: 20px;
         }
     </style>
 {% endblock %}
@@ -27,6 +54,7 @@
     <script src="{{ asset('js/bootstrap-slider.js') }}"></script>
 
     <script>
+
         var count = '{{ contents|length }}';
         var evalContents = {};
         var evalContentMetrics = {};
@@ -64,30 +92,31 @@
         document.oncontextmenu = document.body.oncontextmenu = function() {return false;}
 
         var loopcount = 0;
-        var contentLoop = function(contents) {
-            var currentContent = contents[Object.keys(contents)[loopcount]];
-            playUntil(currentContent, function() {
-                saveMetrics(currentContent);
-//                for (var prop in metrics) { if (metrics.hasOwnProperty(prop)) { metrics[prop] = ""; } }
-                loopcount++;
-                metrics.reset();
-                if(loopcount < Object.keys(contents).length) {
-                    showSlider(currentContent);
-                    setTimeout(contentLoop, 5000, contents);
-                }else{
-                    showSlider(currentContent);
-                    setTimeout(function() {
-                        window.location.replace(window.location.origin + "/evaluation/" + {{ evalId }} + "/postQuestions");
-                    }, 5000);
-                }
-            });
+        var totalContentCount = Object.keys(evalContents).length;
+
+        function contentLoop() {
+            var currentContent = evalContents[Object.keys(evalContents)[loopcount]];
+            playUntil(currentContent,showSlider, mediaEnded);
         }
 
-        function playUntil(content,mediaEnded) {
+        function playUntil(content, showSlider, mediaEnded) {
             metrics.startupTimeBegin = Date.now();
             metrics.setFullscreen(isFullscreen());
             metrics.setFingerprint(new Fingerprint().get());
-            setupBDPlayer(content.path, content.playbackOffset, content.playbackDuration, mediaEnded)
+            setupBDPlayer(content, showSlider, mediaEnded)
+        }
+
+        function mediaEnded(content) {
+            saveMetrics(content);
+            loopcount++;
+            $("#qoeSlider").hide();
+            $("#ex1").slider('destroy');
+            metrics.reset();
+            if(loopcount < totalContentCount) {
+                contentLoop();
+            }else{
+                window.location.replace(window.location.origin + "/evaluation/" + {{ evalId }} + "/postQuestions");
+            }
         }
 
         function saveMetrics(content) {
@@ -104,8 +133,8 @@
                 startupTime:            metrics.getStartupTime(),
                 pauses:                 genCSV(metrics.getPauses(), ";"),
                 stalls:                 genCSV(metrics.getStalls(), ";"),
-                userRating:             metrics.getuserRating()
-            }
+                userRating:             $("#ex1").slider('getValue')
+        }
 
             var metricsUrl = window.location.origin + "/evaluation/" + {{ evalId }}+ "/content/" + content.id;
 
@@ -127,47 +156,25 @@
                     });
         }
 
-        function showSlider() {
-            $("#video").slider({
-                min: '0',
-                max: '10'
+        function showSlider(content, mediaEnded) {
+
+            $("#video").hide();
+            $("#qoeSlider").show();
+
+            $('#ex1').attr({
+                "data-slider-min"   : content.ratingLowerBound,
+                "data-slider-max"   : content.ratingUpperBound
             });
+
+            $('#ex1').slider();
+
+            setTimeout(mediaEnded,(content.ratingTime * 1000), content);
         }
 
-     /*   function sleep (time) {
-            return new Promise((resolve) => setTimeout(resolve, time));
-        }*/
-
-        contentLoop(evalContents);
+        contentLoop();
 
     </script>
 {% endblock %}
 
 
-{#
-{
 
-var metricsUrl = window.location.origin + "/evaluation/storeMetrics";
-
-$.ajax(
-{	url: metricsUrl,
-method:'POST',
-dataType: 'JSON',
-data: evalContentMetrics
-})
-.done(function(/*args vom server*/)
-{
-console.log("Storing metrics...");
-})
-.fail(function(/*args vom server*/)
-{
-console.log("problems handling metrics result...");
-});
-//                    window.location.replace(window.location.origin + "/evaluation/storeMetrics");
-}#}
-
-
-{#
-var formName = '{{ form.vars.name }}';
-document.getElementById(formName.concat("_result")).value = evalContentMetrics;
-document.getElementById('content_results_form').submit();#}

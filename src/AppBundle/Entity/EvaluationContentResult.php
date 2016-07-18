@@ -104,6 +104,12 @@ class EvaluationContentResult
 
     private $playerType;
 
+    /**
+     * @ORM\Column(name="userRating", type="text")
+     */
+
+    private $userRating;
+
 
    
     /**
@@ -455,5 +461,29 @@ class EvaluationContentResult
     public function toArray()
     {
         return get_object_vars($this);
+    }
+
+    /**
+     * Set userRating
+     *
+     * @param string $userRating
+     *
+     * @return EvaluationContentResult
+     */
+    public function setUserRating($userRating)
+    {
+        $this->userRating = $userRating;
+
+        return $this;
+    }
+
+    /**
+     * Get userRating
+     *
+     * @return string
+     */
+    public function getUserRating()
+    {
+        return $this->userRating;
     }
 }

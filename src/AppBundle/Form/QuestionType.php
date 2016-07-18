@@ -76,12 +76,20 @@ class QuestionType extends AbstractType
             }elseif($question->getType() == "textArea"){
                 $builder->add($question->getId(), HiddenType::class);
                 $builder->add($question->getName(), TextareaType::class);
+            }elseif($question->getType() == "country"){
+                $builder->add($question->getId(), HiddenType::class);
+                $builder->add($question->getName(), 'country');
+            }elseif($question->getType() == "birthday"){
+                $builder->add($question->getId(), HiddenType::class);
+                $builder->add($question->getName(), 'birthday', array(
+                    'input' => 'string'
+                ));
             }elseif($question->getType() == "slider"){
                 $answers  = $question->getAnswers();
                 foreach($answers as $answer){
                     $minMax[$answer->getName()] = $answer->getText();
                 }
-                if(sizeof($minMax) == 2){
+                if(isset($minMax) && (sizeof($minMax) == 2)){
                     $builder->add($question->getId(), HiddenType::class);
                     $builder->add($question->getName(), RangeType::class, array(
                         'attr' => array(

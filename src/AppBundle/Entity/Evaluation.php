@@ -36,13 +36,13 @@ class Evaluation
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=65535)
+     * @ORM\Column(type="string", length=65535, nullable=true)
      */
 
     private $intro;
 
     /**
-     * @ORM\Column(type="string", length=65535)
+     * @ORM\Column(type="string", length=65535, nullable=true)
      */
 
     private $disclaimer;

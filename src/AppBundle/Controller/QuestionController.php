@@ -77,6 +77,8 @@ class QuestionController extends Controller
                         $result->setQuestion($question);
                         if ($question->getType() == "text" or
                             $question->getType() == "textArea" or
+                            $question->getType() == "country" or
+                            $question->getType() == "birthday" or
                             $question->getType() == "slider") {
                             $result->setTextanswer($value);
                         }

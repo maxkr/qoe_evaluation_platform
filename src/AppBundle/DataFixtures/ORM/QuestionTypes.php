@@ -43,6 +43,14 @@ class QuestionTypes implements FixtureInterface
         $questionTypeCheckBox->setType("checkBox");
         $manager->persist($questionTypeCheckBox);
 
+        $questionTypeCountry = new QuestionType();
+        $questionTypeCountry->setType("country");
+        $manager->persist($questionTypeCountry);
+
+        $questionTypeBirthday = new QuestionType();
+        $questionTypeBirthday->setType("birthday");
+        $manager->persist($questionTypeBirthday);
+
         $questionTypeSlider = new QuestionType();
         $questionTypeSlider->setType("slider");
         $manager->persist($questionTypeSlider);

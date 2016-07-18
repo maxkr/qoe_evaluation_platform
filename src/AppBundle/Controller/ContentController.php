@@ -79,6 +79,7 @@ class ContentController extends Controller
             $result->setStartupTime($params["startupTime"]);
             $result->setVideoTimes($params["videoTimes"]);
             $result->setPlayerType($params["playerType"]);
+            $result->setUserRating($params["userRating"]);
 
             $em->persist($result);
             $em->flush();

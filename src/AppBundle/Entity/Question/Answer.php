@@ -64,7 +64,7 @@ class Answer
 
     public function __toString()
     {
-        return strval("{$this->name} (order: {$this->ordinance})");
+        return strval("{$this->name} (value: {$this->text}) (order: {$this->ordinance})");
     }
 
     /**
