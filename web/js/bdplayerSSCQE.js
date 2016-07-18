@@ -54,7 +54,10 @@ function setupBDPlayer(content, mediaEnded) {
             onPlaybackFinished: function(e){},
         }
     }
-    $("#video").show();
+    $("#video")
+        .attr("class", "centered_video_continuouse")
+        .show();
+
     $("#continuouseQoeSlider").show();
 
     $('#ex2').attr({
