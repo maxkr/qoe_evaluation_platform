@@ -50,7 +50,11 @@ function setupBDPlayer(content, showSlider, mediaEnded) {
                 pausedTime = Date.now();
             },
             onError: function() {},
-            onReady: function() {},
+            onReady: function() {
+                if (playbackOffset > 0 ) {
+                    bdplayer.seek(playbackOffset);
+                }
+            },
             onPlaybackFinished: function(e){},
         }
     }
@@ -68,6 +72,36 @@ function setupBDPlayer(content, showSlider, mediaEnded) {
             clearInterval(intervalId);
             bdplayer.destroy();
             showSlider(content, mediaEnded);
+        }
+
+        var requestWindow,
+            downloadTimes,
+            movingDownload,
+            bandwidthValue,
+            estBwVideo;
+
+        metrics.pushVideoTime(bdplayer.getCurrentTime());
+        metrics.pushBufferLevel(bdplayer.getVideoBufferLength());
+        metrics.pushRepresentationBw(bdplayer.getPlaybackVideoData().bitrate);
+
+        requestWindow = window.performance.getEntries()
+            .slice(-20)
+            .filter(function(req){return req.entryType == "resource" && !!req.duration && hasExtension(req.name, ['.m4s']);})
+            .slice(-4);
+
+        if (requestWindow.length > 0) {
+            downloadTimes = requestWindow.map(function (req){return Math.abs(req.duration) / 1000;});
+
+            movingDownload = {
+                average: downloadTimes.reduce(function(l, r) {return l + r;}) / downloadTimes.length,
+                high: downloadTimes.reduce(function(l, r) {return l < r ? r : l;}),
+                low: downloadTimes.reduce(function(l, r) {return l < r ? l : r;}),
+                count: downloadTimes.length
+            };
+
+            bandwidthValue = bdplayer.getDownloadedVideoData().bitrate;
+            estBwVideo = Math.round( bandwidthValue / movingDownload.average);
+            metrics.pushGuessedBw(estBwVideo);
         }
     }
 }

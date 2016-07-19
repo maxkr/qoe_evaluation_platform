@@ -94,21 +94,21 @@
 
     {#/* check for eval type */#}
 
-    {% if (evaluation.type ==  'ACR') or (evaluation.type == 'ACR-HR') %}
+    {% if (evaluation.type ==  'ACR') or (evaluation.type == 'ACR-HR') or (evaluation.type == 'SS') %}
 
         <script src="{{ asset('js/VideoMetricsStruct.js') }}"></script>
         <script src="{{ asset('https://bitmovin-a.akamaihd.net/bitdash/latest/bitdash.min.js') }}"></script>
         <script src="{{ asset('js/bdplayerACR.js') }}"></script>
         <script src="{{ asset('js/contentLoopACR.js') }}"></script>
 
-    {% elseif (evaluation.type == 'DCR') or (evaluation.type == 'PC') %}
+    {% elseif (evaluation.type == 'DCR') or (evaluation.type == 'PC') or (evaluation.type == 'DSIS') %}
 
         <script src="{{ asset('js/VideoMetricsStruct.js') }}"></script>
         <script src="{{ asset('https://bitmovin-a.akamaihd.net/bitdash/latest/bitdash.min.js') }}"></script>
         <script src="{{ asset('js/bdplayerDCR.js') }}"></script>
         <script src="{{ asset('js/contentLoopDCR.js') }}"></script>
 
-    {% elseif (evaluation.type == 'DSIS') or (evaluation.type == 'DSCQS') %}
+    {% elseif evaluation.type == 'DSCQS' %}
 
         <script src="{{ asset('js/VideoMetricsStructContinuousRating.js') }}"></script>
         <script src="{{ asset('https://bitmovin-a.akamaihd.net/bitdash/latest/bitdash.min.js') }}"></script>

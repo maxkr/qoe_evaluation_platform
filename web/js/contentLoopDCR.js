@@ -38,7 +38,7 @@ function mediaEnded(content) {
     //console.log("MEDIA ENDED!!?!?!??!");
 
     saveMetrics(content);
-    if ((loopcount+1) % 2 == 0){
+    if ((loopcount+1) % 2 == 0) {
         $("#qoeSlider").hide();
         $("#ex1").slider('destroy');
     }
