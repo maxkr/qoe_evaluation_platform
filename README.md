@@ -2,6 +2,7 @@
 
 This Web-based management framework shall enable easy and simple configuration of SQAs.
 
+> this platform is still under developtment, dont expect more than beta status!
 
 ## Design and Architecture
 
